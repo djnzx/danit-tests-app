@@ -1,0 +1,1461 @@
+### 001 что будет распечатано при попытке выполнить следующий код?
+
+`        int i=3;
+         if (i<5) {
+             System.out.print("A");
+         } if (i<10) {
+             System.out.print("B");
+         }`
+
+# A
+# B
+# AB
+# ничего
+
+### 002 что будет распечатано при попытке выполнить следующий код?
+`        for (int i = 0; i < 10; i++) {
+             System.out.print(i);
+         }`
+
+# 12345678910
+# 1234567890
+# 01234567890
+# 0123456789
+
+### 003 что будет распечатано при попытке выполнить следующий код?
+`        int i=2;
+         switch (i) {
+             case 3:
+                 System.out.print("3");
+             case 2:
+                 System.out.print("2");
+             case 1:
+                 System.out.print("1");
+             default:
+                 System.out.print("d");
+         }`
+# d123
+# 21d
+# 321d
+# 321
+
+### 004 что будет распечатано при попытке выполнить следующий код?
+`        for (int i = 0; i > -10; i--) {
+             System.out.print(i);
+         }`
+
+# 9-8-7-6-5-4-3-2-1-0
+# 01234567890
+# 123456789
+# 0-1-2-3-4-5-6-7-8-9
+
+### 005 что будет распечатано при попытке выполнить следующий код?
+`        System.out.println(5&1);`
+
+# 5
+# 1
+# true
+# false
+
+### 006 что будет распечатано при попытке выполнить следующий код?
+`        System.out.print(8>1);
+         System.out.print(8>>1);
+         System.out.print(8>>>1);
+`
+# 888
+# 421
+# 444
+# none of the above
+
+
+### 008 что будет распечатано при попытке выполнить следующий код?
+`public class Test008 {
+     public static void main(String [] args) {
+         Test008 s = new Test008();
+         s.start();
+     }
+
+     void start() {
+         int a = 3;
+         int b = 4;
+         System.out.print(" " + 7 + 2 + " ");
+         System.out.print(a + b);
+         System.out.print(" " + a + b + " ");
+         System.out.print(hello() + a + b + " ");
+         System.out.println(a + b + hello());
+     }
+
+     String hello() {
+         return "hello";
+     }
+ }
+`
+
+# 9 7 7 hello 7 7hello
+# 72 34 34 hello34 34hello
+# 9 7 7 hello34 34hello
+# 72 7 34 hello34 7hello
+
+### 009 что будет распечатано при попытке выполнить следующий код?
+`
+    boolean [] b = new boolean[3];
+    int c = 0;
+
+    public static void main(String [] args) {
+        Test009 ba = new Test009();
+        ba.set(ba.b, 0);
+        ba.set(ba.b, 2);
+        ba.test();
+    }
+
+    void set(boolean []x, int i) {
+        x[i] = true;
+        ++c;
+    }
+
+    void test() {
+        if ( b[0] && b[1] | b[2] )  c++;
+        if ( b[1] && b[(++c - 2)] ) c+=7;
+        System.out.println("c=" + c);
+    }`
+# c=1
+# c=2
+# c=3
+# c=4
+# c=5
+# c=6
+# c=7
+
+### 010 какие выражения эквивалентны ?
+1. 3/2
+2. 3<2
+3. 3*4
+4. 3<<2
+# 1 и 2
+# 2 и 3
+# 3 и 4
+# 4 и 1
+
+### 011 как поведет себя эта функция
+`
+    public static void test( boolean a, boolean b) {
+        if (a) {
+            System.out.println("A");
+        } else if (a && b) {
+            System.out.println( "A && B");
+        } else {
+            if (!b) {
+                System.out.println( "notB") ;
+            }
+            else {
+                System.out.println( "ELSE" ) ;
+            }
+        }
+    }`
+# a=true и b==true : напечатет "A && B"
+# a=true и b=false : напечатет "notB"
+# a=false и b=true : напечатет "ELSE"
+# a=false и b=false : напечатет "ELSE"
+
+### 012 что будет распечатано при попытке выполнить следующий код?
+`
+        Float f = new Float("12");
+        switch (f) {
+            case 12: System.out.println("Twelve");
+            case 0: System.out.println("Zero");
+            default: System.out.println("Default");
+        }`
+# Zero
+# Twelve
+# Default
+# ошибка компиляции
+
+### 025 что сучится
+`
+public class Test025 {
+    public static void stringReplace (String text) {
+        text = text.replace ('j' , 'c'); /* Line 5 */
+    }
+
+    public static void bufferReplace (StringBuffer text) {
+        text = text.append ("c");  /* Line 9 */
+    }
+
+    public static void main (String args[]) {
+        String textString = new String ("java");
+        StringBuffer textBuffer = new StringBuffer ("java"); /* Line 14 */
+        stringReplace(textString);
+        bufferReplace(textBuffer);
+        System.out.println (textString + textBuffer);
+    }
+}`
+
+# java
+# javac
+# javajavac
+# Compile error
+
+### 026 What will be the output of the program (in jdk1.6 or above)?
+`
+public class Test026 {
+    public static void main(String [] args) {
+        Boolean b1 = new Boolean("false");
+        boolean b2;
+        b2 = b1.booleanValue();
+        if (!b2) {
+            b2 = true;
+            System.out.print("x ");
+        }
+        if (b1 & b2) /* Line 13 */ {
+            System.out.print("y ");
+        }
+        System.out.println("z");
+    }
+}`
+
+# z
+# x z
+# y z
+# Compilation fails.
+
+### 027 what will be printed
+`
+public class Test027 {
+    public static void main(String[] args) {
+        String s="Apple "+
+                "costs " +
+                + '2' +
+                " UAH";
+        System.out.println(s);
+    }
+}`
+# Apple costs 2 UAH
+# Other output
+# Runtime exception
+# Complier error
+
+### 032 What will be the output of the program?
+`
+public class Test032 {
+    public static void main(String[] args) {
+        float f1[ ], f2[ ];
+        f1 = new float[10];
+        f2 = f1;
+        System.out.println("f2[0] = " + f2[0]);
+    }
+}
+`
+
+#  It prints f2[0] = 0.0
+#  It prints f2[0] = NaN
+#  An error at f2 = f1; causes compile to fail.
+#  It prints the garbage value.
+
+### 036 What will be the output of the program?
+`
+public class Test036 {
+    static boolean b1, b2;
+    public static void main(String [] args) {
+        int x = 0;
+        if ( !b1 ) {
+            if ( !b2 ) {
+                b1 = true;
+                x++;
+                if ( 5 > 6 ) {
+                    x++;
+                }
+                if ( !b1 )
+                    x = x + 10;
+                else if ( b2 = true )
+                    x = x + 100;
+                else if ( b1 | b2 )
+                    x = x + 1000;
+            }
+        }
+        System.out.println(x);
+    }
+}`
+
+# 0
+# 1
+# 101
+# 111
+
+### 037 What will be the output of the program?
+`
+public class Test037 {
+    static boolean b;
+    public static void main(String [] args) {
+        short hand = 42;
+        if ( hand < 50 && !b )
+            hand++;
+        if ( hand > 50 );
+        else if ( hand > 40 ) {
+            hand += 7;
+            hand++;
+        }
+        else
+            --hand;
+        System.out.println(hand);
+    }
+}`
+
+# 41
+# 42
+# 50
+# 51
+
+### 038 What will be the output of the program?
+`
+public class Test038 {
+    public static void main(String[] args) {
+        int i = 0;
+        while(1) {
+            if(i == 4) {
+                break;
+            }
+            ++i;
+        }
+        System.out.println("i = " + i);
+    }
+}
+`
+# i = 0
+# i = 3
+# i = 4
+# Compilation fails.
+
+### 039 What will be the output of the program?
+`
+public class Test039 {
+    public static void main(String[] args) {
+        int i = 0, j = 5;
+        tp:
+        for (; ; ) {
+            i++;
+            for (; ; ) {
+                if (i > --j) {
+                    break tp;
+                }
+            }
+            System.out.println("i =" + i + ", j = " + j);
+        }
+    }
+}`
+
+# i = 1, j = 0
+# i = 1, j = 4
+# i = 3, j = 4
+# Compilation fails.
+
+### 040 What will be the output of the program?
+`
+public class Test040 {
+    public static void main(String[] args) {
+        int i = 0;
+        label:
+        if (i < 2) {
+            System.out.print("I is " + i);
+            i++;
+            continue label;
+        }
+    }
+}`
+# I is 0
+# I is 0 I is 1
+# Compilation fails.
+# None of the above
+
+### 049 What will be the output of the program?
+`
+public class Test049 {
+    public static void main(String[] args) {
+        double value = -9.0;
+        System.out.println( Math.sqrt(value));
+    }
+}`
+
+# 3.0
+# -3.0
+# NaN
+# Compilation fails.
+# Runtime Exception
+
+### 050 What will be the output of the program?
+`
+public class Test050 {
+    public static void main(String[] args) {
+        String a = "newspaper";
+        a = a.substring(5,7);
+        char b = a.charAt(1);
+        a = a + b;
+        System.out.println(a);
+    }
+}`
+
+# apa
+# app
+# apea
+# apep
+
+### 052 What is the widest valid returnType for methodA
+`
+public class Test052 {
+    returnType methodA(byte x, double y) {
+        return (long)x / y * 2;
+    }
+}`
+
+# int
+# byte
+# long
+# double
+
+### 053 Which two cause a compiler error?
+
+`
+public class Test053 {
+    public static void main(String[] args) {
+        float[] f = new float(3);
+        float f2[] = new float[];
+        float[]f1 = new float[3];
+        float f3[] = new float[3];
+        float f5[] = {1.0f, 2.0f, 2.0f};
+    }
+}`
+
+# 2, 4
+# 3, 5
+# 4, 5
+# 1, 2
+
+### 056 What will be the output of the program?
+`
+class Test056 {
+    public static void main(String [] args) {
+        int x=0;
+        int y=0;
+        for (int z = 0; z < 5; z++) {
+            if (( ++x > 2 ) || (++y > 2)) {
+                x++;
+            }
+        }
+        System.out.println(x + " " + y);
+    }
+}`
+
+# 5 3
+# 8 2
+# 8 3
+# 8 5
+
+### 057 which three statements are true?
+`
+public class Test057 {
+    public static void main(String [] args) {
+        float f = 42.0f;
+        float [] f1 = new float[2];
+        float [] f2 = new float[2];
+        float [] f3 = f1;
+        long x = 42;
+        f1[0] = 42.0f;
+    }
+}`
+1. f1 == f2
+2. f1 == f3
+3. f2 == f1[1]
+4. x == f1[0]
+5. f == f1[0]
+
+# 1, 2 and 3
+# 2, 4 and 5
+# 3, 4 and 5
+# 1, 4 and 5
+
+### 062 What line of code should added or removed to make this program compile?
+`
+import java.io.File;
+
+public class Test062 {
+    public static void main(String[]args)throws Exception {
+        java.io.PrintWriter out = new java.io.PrintWriter(new File("1.txt"));
+        new java.io.OutputStreamWriter(System.out);
+        out.println("Hello");
+    }
+}`
+
+# No statement required.
+# import java.io.*;
+# include java.io.*;
+# import java.io.PrintWriter;
+# new java.io.OutputStreamWriter(System.out,true);
+
+### 074 What will be the output of the program?
+`
+public class Test074 {
+    public static void main(String [] args) {
+        Test074 p = new Test074();
+        p.start();
+    }
+
+    void start() {
+        boolean b1 = false;
+        boolean b2 = fix(b1);
+        System.out.println(b1 + " " + b2);
+    }
+
+    boolean fix(boolean b1) {
+        b1 = true;
+        return b1;
+    }
+}`
+
+# true true
+# false true
+# true false
+# false false
+
+### 075 What will be the output of the program?
+`
+public class Test075 {
+    public static void main(String [] args) {
+        Test075 p = new Test075();
+        p.start();
+    }
+
+    void start() {
+        String s1 = "slip";
+        String s2 = fix(s1);
+        System.out.println(s1 + " " + s2);
+    }
+
+    String fix(String s1) {
+        s1 = s1 + "stream";
+        System.out.print(s1 + " ");
+        return "stream";
+    }
+}`
+
+# slip stream
+# slipstream stream
+# stream slip stream
+# slipstream slip stream
+
+### 076 What will be the output of the program?
+`
+public class Test076 {
+    static int s;
+    public static void main(String [] args) {
+        Test076 p = new Test076();
+        p.start();
+        System.out.println(s);
+    }
+
+    void start() {
+        int x = 7;
+        twice(x);
+        System.out.print(x + " ");
+    }
+
+    void twice(int x) {
+        x = x*2;
+        s = x;
+    }
+}`
+
+# 7 7
+# 7 14
+# 14 0
+# 14 14
+
+### 077 Which statement is true?
+`
+public class Test077 {
+    public void test(int x) {
+        int odd = 1;
+        if(odd) /* Line 4 */ {
+            System.out.println("odd");
+        } else {
+            System.out.println("even");
+        }
+    }
+}`
+
+# Compilation fails.
+# "odd" will always be output.
+# "even" will always be output.
+# "odd" will be output for odd values of x, and "even" for even values.
+
+### 078 What will be the output of the program?
+`
+public class Test078 {
+    public static void main(String[] args) {
+        int i = 1, j = 10;
+        do {
+            if(i > j) {
+                break;
+            }
+            j--;
+        } while (++i < 5);
+        System.out.println("i = " + i + " and j = " + j);
+
+    }
+}`
+
+# i = 6 and j = 5
+# i = 5 and j = 5
+# i = 6 and j = 4
+# i = 5 and j = 6
+
+### 079 What will be the output of the program?
+`
+public class Test079 {
+    public static void main(String args[]) {
+        int i = 1, j = 0;
+        switch(i) {
+            case 2: j += 6;
+            case 4: j += 1;
+            default: j += 2;
+            case 0: j += 4;
+        }
+        System.out.println("j = " + j);
+    }
+}`
+
+# j = 0
+# j = 2
+# j = 4
+# j = 6
+
+### 082 Which is valid declaration of a float?
+
+# float f = 1F;
+# float f = 1.0;
+# float f = "1";
+# float f = 1.0d;
+
+### 089 What will be the output of the program?
+`
+public class Test089 {
+    public static void main(String [] args)
+    {
+        int result = 0;
+        Boolean b1 = new Boolean("TRUE");
+        Boolean b2 = new Boolean("true");
+        Boolean b3 = new Boolean("tRuE");
+        Boolean b4 = new Boolean("false");
+        if (b1 == b2)  /* Line 10 */
+            result = 1;
+        if (b1.equals(b2) ) /* Line 12 */
+            result = result + 10;
+        if (b2 == b4)  /* Line 14 */
+            result = result + 100;
+        if (b2.equals(b4) ) /* Line 16 */
+            result = result + 1000;
+        if (b2.equals(b3) ) /* Line 18 */
+            result = result + 10000;
+        System.out.println("result = " + result);
+    }
+}
+`
+
+# 0
+# 1
+# 10
+# 10010
+
+### 090 What will be happened ?
+`
+public class Test090 {
+    public static void print() {
+        System.out.print("Hello World ");
+    }
+
+    public static void main(String[] args) {
+        System.out.print("before ");
+        Test211 t=null;
+        ((Test211)t).print();
+        System.out.println("after");
+    }
+}`
+
+# Compilation fails
+# "Hello Wold" will be printed
+# Runtime error
+# "before Hello World after" will be printed
+# "before" will be printed``
+
+### 094 What will be the output of the program?
+`
+public class Test094 {
+    public static void main(String [] args) {
+        int x=20;
+        String sup = (x < 15) ? "small" : (x < 22)? "tiny" : "huge";
+        System.out.println(sup);
+    }
+}`
+
+# small
+# tiny
+# huge
+# Compilation fails
+# Runtime error
+
+### 095 Which of the following are legal lines of code?
+`
+public class Test095 {
+    public static void main(String[] args) {
+        byte w = (int)888.8;
+        byte x = (byte)1000L;
+        long y = (byte)100;
+        byte z = (byte)100L;
+    }
+}`
+
+# 1 and 2
+# 2 and 3
+# 3 and 4
+# All statements are correct.
+
+### 096 Which two statements are equivalent?
+`
+16*4
+16>>2
+16/2^2
+16>>>2
+`
+
+# 1 and 2
+# 2 and 4
+# 3 and 4
+# 1 and 3
+
+### 097 What will be the output of the program?
+`
+public class Test097 {
+    public static void main(String [] args) {
+        int i = 1;
+        do while ( i < 1 )
+            System.out.print("i is " + i);
+        while ( i > 1 ) ;
+    }
+}`
+
+# i is 1
+# i is 1 i is 1
+# No output is produced.
+# Compilation error
+
+### 100 Which of the following are Java reserved words?
+`
+run
+import
+default
+implement`
+
+# 1 and 2
+# 2 and 3
+# 3 and 4
+# 2 and 4
+
+### 101 What will be the output of the program?
+And the command line invocation: java Test red green blue
+`
+public class Test101 {
+    public static void main (String[] args) {
+        String foo = args[1];
+        String bar = args[2];
+        String baz = args[3];
+        System.out.println("baz = " + baz); /* Line 8 */
+    }
+}`
+
+# baz =
+# baz = null
+# baz = blue
+# Runtime Exception
+
+### 107 What will be the output of the program?
+`
+public class Test107 {
+    public static void main(String [] args ) {
+        int result = 0;
+        Test107 oc = new Test107();
+        Object o = oc;
+        if (o == oc)
+            result = 1;
+        if (o != oc)
+            result = result + 10;
+        if (o.equals(oc) )
+            result = result + 100;
+        if (oc.equals(o) )
+            result = result + 1000;
+        System.out.println("result = " + result);
+    }
+}`
+
+# 1
+# 10
+# 101
+# 1101
+
+### 108 What will be the output of the program?
+`
+public class Test108 {
+    public static void main(String[] args) {
+        String s = "foo";
+        Object o = (Object)s;
+        if (s.equals(o)) {
+            System.out.print("AAA");
+        } else {
+            System.out.print("BBB");
+        }
+        if (o.equals(s)) {
+            System.out.print("CCC");
+        } else {
+            System.out.print("DDD");
+        }
+    }
+}`
+
+# AAACCC
+# AAADDD
+# BBBCCC
+# BBBDDD
+
+### 109 What will be the output of the program?
+`
+public class Test109 {
+    public static void main(String[] args) {
+        int i = 1, j = 10;
+        do {
+            if(i++ > --j) /* Line 4 */ {
+                continue;
+            }
+        } while (i < 5);
+        System.out.println("i = " + i + "and j = " + j); /* Line 9 */
+    }
+}`
+
+# i = 6 and j = 5
+# i = 5 and j = 5
+# i = 6 and j = 6
+# i = 5 and j = 6
+
+### 110 What will be the output of the program?
+`
+public class Test110 {
+    static int j;
+    static void methodA(int i){
+        boolean b;
+        do {
+            b = i<10 | methodB(4); /* Line 9 */
+            b = i<10 || methodB(8);  /* Line 10 */
+        } while (!b);
+    }
+
+    static boolean methodB(int i) {
+        j += i;
+        return true;
+    }
+
+    public static void main(String[] args) {
+        methodA(0);
+        System.out.println( "j = " + j );
+    }
+}`
+
+# j = 0
+# j = 4
+# j = 8
+# The code will run with no output
+
+### 114 Which two are acceptable types for x?
+`
+switch(x) {
+    default:
+        System.out.println("Hello");
+}
+
+byte
+long
+char
+float
+Short
+Long
+`
+
+# 1 and 3
+# 2 and 4
+# 3 and 5
+# 4 and 6
+
+### 115 What will be the output of the program?
+`
+public Test115 {
+    final static short x = 2;
+    public static int y = 0;
+    public static void main(String [] args) {
+        for (int z=0; z < 3; z++){
+            switch (z){
+                case x: System.out.print("0 ");
+                case x-1: System.out.print("1 ");
+                case x-2: System.out.print("2 ");
+            }
+        }
+    }
+}`
+
+# 0 1 2
+# 0 1 2 1 2 2
+# 2 1 0 1 0 0
+# 2 1 2 0 1 2
+
+### 116 What will be the output of the program?
+`
+public class Test116 {
+    final static short x = 2;
+    public static int y = 0;
+    public static void main(String [] args) {
+        for (int z=0; z < 3; z++) {
+            switch (z) {
+                case y: System.out.print("0 ");   /* Line 11 */
+                case x-1: System.out.print("1 "); /* Line 12 */
+                case x: System.out.print("2 ");
+            }
+        }
+    }
+}`
+
+# 0 1 2
+# 0 1 2 1 2 2
+# Compilation fails at line 11.
+# Compilation fails at line 12.
+
+### 117 What will be the output of the program?
+`
+public class Test117 {
+    final static short x = 2;
+    public static int y = 0;
+    public static void main(String [] args) {
+        for (int z=0; z < 4; z++) {
+            switch (z) {
+                case x: System.out.print("0 ");
+                default: System.out.print("def ");
+                case x-1: System.out.print("1 ");
+                            break;
+                case x-2: System.out.print("2 ");
+            }
+        }
+    }
+}`
+
+# 0 def 1
+# 2 1 0 def 1
+# 2 1 0 def def
+# 2 1 0 def 1 def 1
+
+### 130 What two statements are true about the result obtained from calling Math.random()?
+`
+The result is less than 0.0.
+The result is greater than or equal to 0.0.
+The result is less than 1.0.
+The result is greater than 1.0.
+The result is greater than or equal to 1.0.
+`
+
+# 1 and 2
+# 2 and 3
+# 3 and 4
+# 4 and 5
+
+### 131 Which cause a compiler error?
+
+# int[] scores = {3, 5, 7};
+# int[][] scores = {2,7,6}, {9,3,45};
+# String cats[] = {"Fluffy", "Spot", "Zeus"};
+# boolean results[] = new boolean [] {true, false, true};
+# Integer results[] = {new Integer(3), new Integer(5), new Integer(8)};
+
+### 132 Which three are valid method signatures in an interface?
+`
+private int getArea();
+public float getVol(float x);
+public void main(String [] args);
+public static void main(String [] args);
+boolean setFlag(Boolean [] test);
+`
+
+# 1 and 2
+# 2, 3 and 5
+# 3, 4, and 5
+# 2 and 4
+
+### 134 What will be the output of the program?
+`
+class Test134 {
+    public static void main(String [] args) {
+        int x= 0;
+        int y= 0;
+        for (int z = 0; z < 5; z++) {
+            if (( ++x > 2 ) && (++y > 2)) {
+                x++;
+            }
+        }
+        System.out.println(x + " " + y);
+    }
+}`
+
+# 5 2
+# 5 3
+# 6 3
+# 6 4
+
+### 135 What will be the output of the program?
+`
+public class Test135 {
+    public static void main(String[] args) {
+        int i = 1, j = -1;
+        switch (i) {
+            case 0, 1: j = 1; /* Line 4 */
+            case 2: j = 2;
+            default: j = 0;
+        }
+        System.out.println("j = " + j);
+    }
+}`
+
+# j = -1
+# j = 0
+# j = 1
+# Compilation fails.
+
+### 136 What will be the output of the program?
+`
+for(int i = 0; i < 3; i++) {
+    switch(i) {
+        case 0: break;
+        case 1: System.out.print("one ");
+        case 2: System.out.print("two ");
+        case 3: System.out.print("three ");
+    }
+}
+System.out.println("done");`
+
+# done
+# one two done
+# one two three done
+# one two three two three done
+
+### 137 What will be the output of the program?
+`
+boolean bool = true;
+if(bool = false) /* Line 2 */{
+    System.out.println("a");
+} else if(bool) /* Line 6 */ {
+    System.out.println("b");
+} else if(!bool) /* Line 10 */{
+    System.out.println("c"); /* Line 12 */
+}
+else {
+    System.out.println("d");
+}`
+
+# a
+# b
+# c
+# d
+
+### 142 What will be the output of the program?
+`
+public class Test142 {
+    public static void main (String [] args) {
+        Object o = new Object() /* Line 5 */ {
+            public boolean equals(Object obj) {
+                return true;
+            }
+        };      /* Line 11 */
+        System.out.println(o.equals("Fred"));
+    }
+}`
+
+# It prints "true".
+# It prints "Fred".
+# An exception occurs at runtime.
+# Compilation fails
+
+### 148 Select how you would start the program to cause it to print: Arg is 2
+`
+public class Myfile {
+    public static void main (String[] args) {
+        String biz = args[1];
+        String baz = args[2];
+        String rip = args[3];
+        System.out.println("Arg is " + rip);
+    }
+}`
+
+# java Myfile 222
+# java Myfile 1 2 2 3 4
+# java Myfile 1 3 2 2
+# java Myfile 0 1 2 3
+
+### 149 What will be the output of the program?
+`int i = (int) Math.random();`
+
+# i = 0
+# i = 1
+# value of i is undetermined
+# Statement causes a compile error
+# nothing will be printed
+
+### 152 Which statement is true?
+`
+public class While {
+    public void loop() {
+        int x= 0;
+        while ( 1 ) /* Line 6 */
+        {
+            System.out.print("x plus one is " + (x + 1)); /* Line 8 */
+        }
+    }
+}`
+
+# There is a syntax error on line 1.
+# There are syntax errors on lines 1 and 6.
+# There are syntax errors on lines 1, 6, and 8.
+# There is a syntax error on line 6.
+
+### 153 What will be the output of the program?
+`
+int I = 0;
+    outer:
+    while (true) {
+        I++;
+        inner:
+        for (int j = 0; j < 10; j++) {
+            I += j;
+            if (j == 3)
+                continue inner;
+            break outer;
+        }
+        continue outer;
+    }
+System.out.println(I);`
+
+# 1
+# 2
+# 3
+# 4
+
+### 154 What will be the output of the program?
+`
+public class Test {
+    private static float[] f = new float[2];
+    public static void main (String[] args)
+    {
+        System.out.println("f[0] = " + f[0]);
+    }
+}`
+
+# f[0] = 0
+# f[0] = 0.0
+# Compile Error
+# Runtime Exception
+
+### 180 Which three are methods of the Object class?
+`
+notify();
+notifyAll();
+isInterrupted();
+synchronized();
+interrupt();
+wait(long msecs);
+sleep(long msecs);
+yield();
+`
+
+# 1, 2, 4
+# 2, 4, 5
+# 1, 2, 6
+# 2, 3, 4
+
+### 186 Which of the following would compile without error?
+
+# int a = Math.abs(-5);
+# int b = Math.abs(5.0);
+# int c = Math.abs(5.5F);
+# int d = Math.abs(5L);
+
+### 188 What will be the output of the program?
+`System.out.println(Math.sqrt(-4D));`
+
+# -2
+# NaN
+# Compile Error
+# Runtime Exception
+
+### 190 Which statement is true given the following?
+`Double d = Math.random();`
+
+# 0.0 < d <= 1.0
+# 0.0 <= d < 1.0
+# Compilation fail
+# Cannot say.
+
+### 191 What will be the output of the program?
+`
+public class Test
+{
+    public int aMethod()
+    {
+        static int i = 0;
+        i++;
+        return i;
+    }
+    public static void main(String args[])
+    {
+        Test test = new Test();
+        test.aMethod();
+        int j = test.aMethod();
+        System.out.println(j);
+    }
+}`
+
+# 0
+# 1
+# 2
+# Compilation fails.
+
+### 192 What will be the output of the program?
+`
+class PassA
+{
+    public static void main(String [] args)
+    {
+        PassA p = new PassA();
+        p.start();
+    }
+
+    void start()
+    {
+        long [] a1 = {3,4,5};
+        long [] a2 = fix(a1);
+        System.out.print(a1[0] + a1[1] + a1[2] + " ");
+        System.out.println(a2[0] + a2[1] + a2[2]);
+    }
+
+    long [] fix(long [] a3)
+    {
+        a3[1] = 7;
+        return a3;
+    }
+}`
+
+# 12 15
+# 15 15
+# 3 4 5 3 7 5
+# 3 7 5 3 7 5
+
+### 193 What will be the output of the program?
+`
+class Equals
+{
+    public static void main(String [] args)
+    {
+        int x = 100;
+        double y = 100.1;
+        boolean b = (x = y); /* Line 7 */
+        System.out.println(b);
+    }
+}`
+
+# true
+# false
+# Compilation fails
+# An exception is thrown at runtime
+
+### 194 What will be the output of the program?
+`
+class Bitwise
+{
+    public static void main(String [] args)
+    {
+        int x = 11 & 9;
+        int y = x ^ 3;
+        System.out.println( y | 12 );
+    }
+}`
+
+# 0
+# 7
+# 8
+# 14
+
+### 195 What will be the output of the program?
+`
+class SSBool
+{
+    public static void main(String [] args)
+    {
+        boolean b1 = true;
+        boolean b2 = false;
+        boolean b3 = true;
+        if ( b1 & b2 | b2 & b3 | b2 ) /* Line 8 */
+            System.out.print("ok ");
+        if ( b1 & b2 | b2 & b3 | b2 | b1 ) /*Line 10*/
+            System.out.println("dokey");
+    }
+}`
+
+# ok
+# dokey
+# ok dokey
+# No output is produced
+# Compilation error
+
+### 196 What will be the output of the program?
+`
+int x = l, y = 6;
+while (y--)
+{
+    x++;
+}
+System.out.println("x = " + x +" y = " + y);`
+
+# x = 6 y = 0
+# x = 7 y = 0
+# x = 6 y = -1
+# Compilation fails.
+
+### 197 What will be the output of the program?
+`
+for (int i = 0; i < 4; i += 2)
+{
+    System.out.print(i + " ");
+}
+System.out.println(i); /* Line 5 */`
+
+# 0 2 4
+# 0 2 4 5
+# 0 1 2 3 4
+# Compilation fails.
+
+### 198 What will be the output of the program?
+`
+int x = 3;
+int y = 1;
+if (x = y) /* Line 3 */
+{
+    System.out.println("x =" + x);
+}`
+
+# x = 1
+# x = 3
+# Compilation fails.
+# The code runs with no output.
+
+### 203 What is the numerical range of char?
+
+# 0 to 32767
+# 0 to 65535
+# -256 to 255
+# -32768 to 32767
+
+### 208 What will be the output of the program?
+`
+try
+{
+    Float f1 = new Float("3.0");
+    int x = f1.intValue();
+    byte b = f1.byteValue();
+    double d = f1.doubleValue();
+    System.out.println(x + b + d);
+}
+catch (NumberFormatException e) /* Line 9 */
+{
+    System.out.println("bad number"); /* Line 11 */
+}`
+
+# 9.0
+# bad number
+# Compilation fails on line 9.
+# Compilation fails on line 11.
+
+### 209 What will be the output of the program?
+`
+public class Test209 {
+    static int x;
+
+    boolean catch() {
+        x++;
+        return true;
+    }
+
+    public static void main(String[] args) {
+        x=0;
+        if ((catch() | catch()) || catch())
+            x++;
+        System.out.println(x);
+    }
+}`
+
+# 1
+# 2
+# 3
+# Compilation Fails
+
+### 211 What will be the output of the program?
+'
+public class Test211 {
+    static int x;
+
+    static boolean catch1() {
+        x++;
+        return true;
+    }
+
+    public static void main(String[] args) {
+        x=0;
+        if ((catch1() | catch1()) || catch1())
+        x++;
+        System.out.println(x);
+    }
+}'
+
+# 1
+# 2
+# 3
+# 4
+# 5
+
+### 210 What will be the output of the program?
+`
+public class Test210 {
+    public static void main(String[] args) {
+        String s = "hello";
+        Object o = s;
+        if (o.equals(s)) {
+            System.out.println("A");
+        } else {
+            System.out.println("B");
+        }
+        if(s.equals(o)) {
+            System.out.println("C");
+        } else {
+            System.out.println("D");
+        }
+    }
+}
+
+A
+B
+C
+D
+`
+
+# 1 and 3
+# 2 and 4
+# 3 and 4
+# 1 and 2
+

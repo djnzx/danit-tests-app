@@ -1,0 +1,263 @@
+<items><item><question>001 что будет распечатано при попытке выполнить следующий код?
+
+`        int i=3;
+         if (i&amp;lt;5) {
+             System.out.print(&quot;A&quot;);
+         } if (i&amp;lt;10) {
+             System.out.print(&quot;B&quot;);
+         }`</question><answers><answer>A</answer><answer>B</answer><answer>AB</answer><answer>ничего</answer></answers></item>
+<item><question>002 что будет распечатано при попытке выполнить следующий код?
+`        for (int i = 0; i &amp;lt; 10; i++) {
+             System.out.print(i);
+         }`</question><answers><answer>12345678910</answer><answer>1234567890</answer><answer>01234567890</answer><answer>0123456789</answer></answers></item>
+<item><question>003 что будет распечатано при попытке выполнить следующий код?
+`        int i=2;
+         switch (i) {
+             case 3:
+                 System.out.print(&quot;3&quot;);
+             case 2:
+                 System.out.print(&quot;2&quot;);
+             case 1:
+                 System.out.print(&quot;1&quot;);
+             default:
+                 System.out.print(&quot;d&quot;);
+         }`</question><answers><answer>d123</answer><answer>21d</answer><answer>321d</answer><answer>321</answer></answers></item>
+<item><question>004 что будет распечатано при попытке выполнить следующий код?
+`        for (int i = 0; i &amp;gt -10; i--) {
+             System.out.print(i);
+         }`</question><answers><answer>9-8-7-6-5-4-3-2-1-0</answer><answer>01234567890</answer><answer>123456789</answer><answer>0-1-2-3-4-5-6-7-8-9</answer></answers></item>
+<item><question>005 что будет распечатано при попытке выполнить следующий код?
+`        System.out.println(5&amp;1);`</question><answers><answer>5</answer><answer>1</answer><answer>true</answer><answer>false</answer></answers></item>
+<item><question>006 что будет распечатано при попытке выполнить следующий код?
+`        System.out.print(8&amp;gt1);
+         System.out.print(8&amp;gt&amp;gt1);
+         System.out.print(8&amp;gt&amp;gt&amp;gt1);
+`</question><answers><answer>888</answer><answer>421</answer><answer>444</answer><answer>none of the above</answer></answers></item>
+<item><question>007 что будет распечатано при попытке выполнить следующий код?
+`class A {
+    final int get(int a, int b) { return 0; }
+}
+class B extends A {
+    int get(int a, int b) { return 1; }
+}
+public class Test07{
+    public static void main(String args[])
+    {
+        B b = new B();
+        System.out.println(&quot;a=&quot; + b.get(0, 1));
+    }`</question><answers><answer>a=0</answer><answer>a=1</answer><answer>Compilation fails</answer><answer>An exception will be thrown at the runtime</answer></answers></item>
+<item><question>008 что будет распечатано при попытке выполнить следующий код?
+`public class Test008 {
+     public static void main(String [] args) {
+         Test008 s = new Test008();
+         s.start();
+     }
+
+     void start() {
+         int a = 3;
+         int b = 4;
+         System.out.print(&quot; &quot; + 7 + 2 + &quot; &quot;);
+         System.out.print(a + b);
+         System.out.print(&quot; &quot; + a + b + &quot; &quot;);
+         System.out.print(hello() + a + b + &quot; &quot;);
+         System.out.println(a + b + hello());
+     }
+
+     String hello() {
+         return &quot;hello&quot;;
+     }
+ }
+`</question><answers><answer>9 7 7 hello 7 7hello</answer><answer>72 34 34 hello34 34hello</answer><answer>9 7 7 hello34 34hello</answer><answer>72 7 34 hello34 7hello</answer></answers></item>
+<item><question>009 что будет распечатано при попытке выполнить следующий код?
+`
+    boolean [] b = new boolean[3];
+    int c = 0;
+
+    public static void main(String [] args) {
+        Test009 ba = new Test009();
+        ba.set(ba.b, 0);
+        ba.set(ba.b, 2);
+        ba.test();
+    }
+
+    void set(boolean []x, int i) {
+        x[i] = true;
+        ++c;
+    }
+
+    void test() {
+        if ( b[0] &amp;&amp; b[1] | b[2] )  c++;
+        if ( b[1] &amp;&amp; b[(++c - 2)] ) c+=7;
+        System.out.println(&quot;c=&quot; + c);
+    }`</question><answers><answer>c=1</answer><answer>c=2</answer><answer>c=3</answer><answer>c=4</answer><answer>c=5</answer><answer>c=6</answer><answer>c=7</answer></answers></item>
+<item><question>010 какие выражения эквивалентны ?
+1. 3/2
+2. 3&amp;lt;2
+3. 3*4
+4. 3&amp;lt;&amp;lt;2</question><answers><answer>1 и 2</answer><answer>2 и 3</answer><answer>3 и 4</answer><answer>4 и 1</answer></answers></item>
+<item><question>011 как поведет себя эта функция
+`
+    public static void test( boolean a, boolean b) {
+        if (a) {
+            System.out.println(&quot;A&quot;);
+        } else if (a &amp;&amp; b) {
+            System.out.println( &quot;A &amp;&amp; B&quot;);
+        } else {
+            if (!b) {
+                System.out.println( &quot;notB&quot;) ;
+            }
+            else {
+                System.out.println( &quot;ELSE&quot; ) ;
+            }
+        }
+    }`</question><answers><answer>a=true и b==true : напечатет &quot;A &amp;&amp; B&quot;</answer><answer>a=true и b=false : напечатет &quot;notB&quot;</answer><answer>a=false и b=true : напечатет &quot;ELSE&quot;</answer><answer>a=false и b=false : напечатет &quot;ELSE&quot;</answer></answers></item>
+<item><question>012 что будет распечатано при попытке выполнить следующий код?
+`
+        Float f = new Float(&quot;12&quot;);
+        switch (f) {
+            case 12: System.out.println(&quot;Twelve&quot;);
+            case 0: System.out.println(&quot;Zero&quot;);
+            default: System.out.println(&quot;Default&quot;);
+        }`</question><answers><answer>Zero</answer><answer>Twelve</answer><answer>Default</answer><answer>ошибка компиляции</answer></answers></item>
+<item><question>013 что будет распечатано при попытке выполнить следующий код?
+`
+public class Test012 {
+    public static void aMethod() throws Exception {
+        try {
+            throw new Exception();
+        }
+        finally {
+            System.out.print(&quot;finally &quot;);
+        }
+    }
+
+    public static void main(String args[]) {
+        try {
+            aMethod();
+        }
+        catch (Exception e) {
+            System.out.print(&quot;exception &quot;);
+        }
+        System.out.print(&quot;finished&quot;);
+    }
+}`</question><answers><answer>finally</answer><answer>exception finished</answer><answer>finally exception finished</answer><answer>Compilation fails</answer></answers></item>
+<item><question>014 какие выражения действительны java.util.ArrayList?</question><answers><answer>элементы коллекции отсортированы.</answer><answer>элементы коллекции иммутабельны.</answer><answer>элементы коллекции уникальны</answer><answer>элементы коллекции доступны через уникальный ключ</answer></answers></item>
+<item><question>015 какие выражения истинны для method-local inner class</question><answers><answer>It must be marked final.</answer><answer>It can be marked abstract.</answer><answer>It can be marked public.</answer><answer>It can be marked static.</answer></answers></item>
+<item><question>016 Есть код
+`
+public class X implements Runnable {
+    public void run() {
+        System.out.println(&quot;hello&quot;);
+    }
+}`
+как запустить этот код ?</question><answers><answer>Thread t = new Thread(X);</answer><answer>Thread t = new Thread(X); t.start();</answer><answer>X run = new X(); Thread t = new Thread(run); t.start();</answer><answer>Thread t = new Thread(); x.run();</answer></answers></item>
+<item><question>017 что будет результатом выполнения
+`
+public class Test017 extends Thread {
+    public static void main(String [] args) {
+        Test017 t = new Test017();
+        t.start();
+        System.out.print(&quot;one. &quot;);
+        t.start();
+        System.out.print(&quot;two. &quot;);
+    }
+
+    public void run() {
+        System.out.print(&quot;Thread &quot;);
+    }
+}`</question><answers><answer>ошибка компиляции</answer><answer>An exception occurs at runtime.</answer><answer>Напечатает &quot;Thread one. Thread two.&quot;</answer><answer>Не знаю / не понятно.</answer></answers></item>
+<item><question>018 что будет результатом выполнения
+`class MyThread extends Thread {
+     MyThread() {}
+     MyThread(Runnable r) {super(r); }
+     public void run() {
+         System.out.print(&quot;Inside a Thread &quot;);
+     }
+ }
+
+ class MyRunnable implements Runnable {
+     public void run() {
+         System.out.print(&quot;Inside Runnable&quot;);
+     }
+ }
+
+ class Test018 {
+     public static void main(String[] args) {
+         new MyThread().start();
+         new MyThread(new MyRunnable()).start();
+     }
+ }
+`</question><answers><answer>напечатает &quot;Inside Thread Inside Thread&quot;</answer><answer>напечатает &quot;Inside Thread Inside Runnable&quot;</answer><answer>не откомпилируется</answer><answer>An exception at runtime</answer></answers></item>
+<item><question>019 что напечатает программа
+`
+public class Test019 implements Runnable {
+    int x, y;
+    public void run() {
+        for(int i = 0; i &amp;lt; 1000; i++)
+            synchronized(this) {
+                x = 11;
+                y = 11;
+            }
+        System.out.print(x + &quot; &quot; + y + &quot; &quot;);
+    }
+
+    public static void main(String args[]) {
+        Test019 run = new Test019();
+        Thread t1 = new Thread(run);
+        Thread t2 = new Thread(run);
+        t1.start();
+        t2.start();
+    }
+}`</question><answers><answer>случится DeadLock</answer><answer>12 12 12 12</answer><answer>ошибка компиляцмм</answer><answer>поведение не определено</answer></answers></item>
+<item><question>020 в какой месте будет ошибка компиляции
+`
+public class Test020 {
+    public void one() {
+        assert false; // 1
+        assert false; // 2
+    }
+
+    public void two() {
+        while(true) {
+            assert false; // 3
+        }
+        assert false; // 4
+    }
+}`</question><answers><answer>1</answer><answer>2</answer><answer>3</answer><answer>3</answer></answers></item>
+<item><question>021 что напечатает программа
+`
+public class Test022 {
+    public static int y;
+
+    public static void two(int x) {
+        System.out.print(&quot;two &quot;);
+        y = x;
+    }
+
+    public static int one(int z) {
+        System.out.print(&quot;one &quot;);
+        return y = z;
+    }
+
+    public static void main(String [] args ) {
+        int t = 0;
+        assert t &amp;gt 0 : one(7);
+        assert t &amp;gt 1 : two(8);
+        System.out.println(&quot;done &quot;);
+    }
+}`</question><answers><answer>one</answer><answer>two</answer><answer>one done</answer><answer>two done</answer><answer>one two done</answer><answer>ошибка компиляции</answer></answers></item>
+<item><question>022</question><answers></answers></item>
+<item><question>023</question><answers></answers></item>
+<item><question>024</question><answers></answers></item>
+<item><question>025</question><answers></answers></item>
+<item><question>026</question><answers></answers></item>
+<item><question>027</question><answers></answers></item>
+<item><question>028</question><answers></answers></item>
+<item><question>029</question><answers></answers></item>
+<item><question>030</question><answers></answers></item>
+<item><question>031</question><answers></answers></item>
+<item><question>032</question><answers></answers></item>
+<item><question>033</question><answers></answers></item>
+<item><question>034</question><answers></answers></item>
+<item><question>035</question><answers></answers></item>
+<item><question>036</question><answers></answers></item></items>

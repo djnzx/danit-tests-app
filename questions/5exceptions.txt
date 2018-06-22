@@ -1,0 +1,573 @@
+### 013 что будет распечатано при попытке выполнить следующий код?
+`
+public class Test012 {
+    public static void aMethod() throws Exception {
+        try {
+            throw new Exception();
+        }
+        finally {
+            System.out.print("finally ");
+        }
+    }
+
+    public static void main(String args[]) {
+        try {
+            aMethod();
+        }
+        catch (Exception e) {
+            System.out.print("exception ");
+        }
+        System.out.print("finished");
+    }
+}`
+
+# finally
+# exception finished
+# finally exception finished
+# Compilation fails
+
+### 020 в какой месте будет ошибка компиляции
+`
+public class Test020 {
+    public void one() {
+        assert false; // 1
+        assert false; // 2
+    }
+
+    public void two() {
+        while(true) {
+            assert false; // 3
+        }
+        assert false; // 4
+    }
+}`
+
+# 1
+# 2
+# 3
+# 3
+
+### 021 что напечатает программа
+`
+public class Test022 {
+    public static int y;
+
+    public static void two(int x) {
+        System.out.print("two ");
+        y = x;
+    }
+
+    public static int one(int z) {
+        System.out.print("one ");
+        return y = z;
+    }
+
+    public static void main(String [] args ) {
+        int t = 0;
+        assert t > 0 : one(7);
+        assert t > 1 : two(8);
+        System.out.println("done ");
+    }
+}`
+
+# one
+# two
+# one done
+# two done
+# one two done
+# ошибка компиляции
+
+### 022 Which of the following statements is true?
+
+A.	In an assert statement, the expression after the colon ( : ) can be any Java expression.
+B.	If a switch block has no default, adding an assert default is considered appropriate.
+C.	In an assert statement, if the expression after the colon ( : ) does not have a value, the assert's error message will be empty.
+D.	It is appropriate to handle assertion failures using a catch clause.
+# A
+# B
+# C
+# D
+
+### 023 which line is an example of an inappropriate use of assertions
+`
+public class Test2
+{
+    public static int x;
+    public static int foo(int y)
+    {
+        return y * 2;
+    }
+    public static void main(String [] args)
+    {
+        int z = 5;
+        assert z > 0; /* Line 11 */
+        assert z > 2: foo(z); /* Line 12 */
+        if ( z < 7 )
+            assert z > 4; /* Line 14 */
+
+        switch (z)
+        {
+            case 4: System.out.println("4 ");
+            case 5: System.out.println("5 ");
+            default: assert z < 10;
+        }
+
+        if ( z < 10 )
+            assert z > 4: z++; /* Line 22 */
+        System.out.println(z);
+    }
+}`
+
+# 1
+# 2
+# 3
+# 4
+
+### 024 What will be the output of the program?
+`
+public class NFE
+{
+    public static void main(String [] args)
+    {
+    String s = "42";
+        try
+        {
+            s = s.concat(".5");  /* Line 8 */
+            double d = Double.parseDouble(s);
+            s = Double.toString(d);
+            int x = (int) Math.ceil(Double.valueOf(s).doubleValue());
+            System.out.println(x);
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("bad number");
+        }
+    }
+}`
+
+# 42
+# 42.5
+# 43
+# bad number
+
+### 041 What will be the output of the program?
+`
+try {
+    int x = 0;
+    int y = 5 / x;
+}
+catch (Exception e) {
+    System.out.println("Exception");
+}
+catch (ArithmeticException ae) {
+    System.out.println(" Arithmetic Exception");
+}
+System.out.println("finished");
+`
+
+# finished
+# Exception
+# Compilation fails.
+# Arithmetic Exception
+
+### 042 Which statement is true?
+
+# A try statement must have at least one corresponding catch block.
+# Multiple catch statements can catch the same class of exception more than once.
+# An Error that might be thrown in a method must be declared as thrown by that method, or be handled within that method.
+# Except in case of VM shutdown, if a try block starts to execute, a corresponding finally block will always start to execute.
+
+### 048 What causes compilation to fail?
+`
+public class Test {
+    public void foo()
+    {
+        assert false; /* Line 5 */
+        assert false; /* Line 6 */
+    }
+    public void bar()
+    {
+        while(true)
+        {
+            assert false; /* Line 12 */
+        }
+        assert false;  /* Line 14 */
+    }
+}`
+
+# Line 5
+# Line 6
+# Line 12
+# Line 14
+
+### 058 What will be the output of the program?
+`
+public class MyProgram {
+    public static void main(String args[]){
+        try {
+            System.out.print("Hello world ");
+        }
+        finally {
+            System.out.println("Finally executing ");
+        }
+    }
+}`
+
+# Nothing. The program will not compile because no exceptions are specified.
+# Nothing. The program will not compile because no catch clauses are specified.
+# Hello world.
+# Hello world Finally executing
+
+### 059 and given that EOFException and FileNotFoundException are both subclasses of IOException, and further assuming this block of code is placed into a class, which statement is most true concerning this code?
+`
+System.out.print("Start ");
+try {
+    System.out.print("Hello world");
+    throw new FileNotFoundException();
+}
+System.out.print(" Catch Here "); /* Line 7 */
+catch(EOFException e) {
+    System.out.print("End of file exception");
+} catch(FileNotFoundException e) {
+    System.out.print("File not found");
+}`
+
+# The code will not compile.
+# Code output: Start Hello world File Not Found.
+# Code output: Start Hello world End of file exception.
+# Code output: Start Hello world Catch Here File not found.
+
+### 080 and given that all methods of class FileOutputStream, including close(), throw an IOException, which of these is true?
+`
+public class MyProgram {
+    public static void main(String args[]) {
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream("test.txt");
+            out.write(122);
+        } catch(IOException io) {
+            System.out.println("IO Error.");
+        } finally {
+            out.close();
+        }
+    }
+}
+`
+
+# This program will compile successfully.
+# This program fails to compile due to an error at line 4.
+# This program fails to compile due to an error at line 6.
+# This program fails to compile due to an error at line 18.
+
+### 081 Which statement is true?
+
+# catch(X x) can catch subclasses of X where X is a subclass of Exception.
+# The Error class is a RuntimeException.
+# Any statement that can throw an Error must be enclosed in a try block.
+# Any statement that can throw an Exception must be enclosed in a try block.
+
+### 088 What will be the output of the program?
+`
+public class Test {
+    public static void main(String[] args) {
+        int x = 0;
+        assert (x > 0) ? "assertion failed" : "assertion passed" ;
+        System.out.println("finished");
+    }
+}`
+
+# finished
+# Compilation fails.
+# An AssertionError is thrown and finished is output.
+# An AssertionError is thrown with the message "assertion failed."
+
+### 098 What will be the output of the program?
+`
+public class RTExcept {
+    public static void throwit () {
+        System.out.print("throwit ");
+        throw new RuntimeException();
+    }
+    public static void main(String [] args) {
+        try {
+            System.out.print("hello ");
+            throwit();
+        } catch (Exception re ) {
+            System.out.print("caught ");
+        } finally {
+            System.out.print("finally ");
+        }
+        System.out.println("after ");
+    }
+}
+`
+
+# hello throwit caught
+# Compilation fails
+# hello throwit RuntimeException caught after
+# hello throwit caught finally after
+
+### 099 What will be the output of the program?
+`
+public class X {
+    public static void main(String[] args) {
+        try {
+            badMethod();
+            System.out.print("A");
+        } catch (Exception ex) {
+            System.out.print("B");
+        }
+        finally {
+            System.out.print("C");
+        }
+        System.out.print("D");
+    }
+    public static void badMethod() {}
+}`
+
+# AC
+# BC
+# ACD
+# ABCD
+
+### 106 Which statement is true ?
+
+# Assertion expressions should not contain side effects.
+# Assertion expression values can be any primitive type.
+# Assertions should be used for enforcing preconditions on public methods.
+# An AssertionError thrown as a result of a failed assertion should always be handled by the enclosing method.
+
+### 125 What will be the output of the program (when you run with the -ea option) ?
+`
+public class Test {
+    public static void main(String[] args) {
+        int x = 0;
+        assert (x > 0) : "assertion failed"; /* Line 6 */
+        System.out.println("finished");
+    }
+}`
+
+# finished
+# Compilation fails.
+# An AssertionError is thrown.
+# An AssertionError is thrown and finished is output.
+
+### 126 Which line is an example of an inappropriate use of assertions?
+`
+public class Test2 {
+    public static int x;
+    public static int foo(int y) {
+        return y * 2;
+    }
+    public static void main(String [] args) {
+        int z = 5;
+        assert z > 0; /* Line 11 */
+        assert z > 2: foo(z); /* Line 12 */
+        if ( z < 7 )
+            assert z > 4; /* Line 14 */
+
+        switch (z) {
+            case 4: System.out.println("4 ");
+            case 5: System.out.println("5 ");
+            default: assert z < 10;
+        }
+
+        if ( z < 10 )
+            assert z > 4: z++; /* Line 22 */
+        System.out.println(z);
+    }
+}`
+
+# Line 11
+# Line 12
+# Line 14
+# Line 22
+
+### 127 Which statement is true?
+
+# Assertions can be enabled or disabled on a class-by-class basis.
+# Conditional compilation is used to allow tested classes to run at full speed.
+# Assertions are appropriate for checking the validity of arguments in a method.
+# The programmer can choose to execute a return statement or to throw an exception if an assertion fails.
+
+### 138 What will be the output of the program?
+`
+class Exc0 extends Exception { }
+class Exc1 extends Exc0 { } /* Line 2 */
+public class Test {
+    public static void main(String args[]) {
+        try
+        {
+            throw new Exc1(); /* Line 9 */
+        }
+        catch (Exc0 e0) /* Line 11 */
+        {
+            System.out.println("Ex0 caught");
+        }
+        catch (Exception e)
+        {
+            System.out.println("exception caught");
+        }
+    }
+}`
+
+# Ex0 caught
+# exception caught
+# Compilation fails because of an error at line 2.
+# Compilation fails because of an error at line 9.
+
+### 139 Which answer most closely indicates the behavior of the program?
+`
+public class MyProgram {
+    public static void throwit() {
+        throw new RuntimeException();
+    }
+
+    public static void main(String args[]){
+        try {
+            System.out.println("Hello world ");
+            throwit();
+            System.out.println("Done with try block ");
+        } finally {
+            System.out.println("Finally executing ");
+        }
+    }
+}`
+
+# The program will not compile.
+# The program will print Hello world, then will print that a RuntimeException has occurred, then will print Done with try block, and then will print Finally executing.
+# The program will print Hello world, then will print that a RuntimeException has occurred, and then will print Finally executing.
+# The program will print Hello world, then will print Finally executing, then will print that a RuntimeException has occurred.
+
+### 167 Which of the following statements is true?
+
+# It is sometimes good practice to throw an AssertionError explicitly.
+# Private getter() and setter() methods should not use assertions to verify arguments.
+# If an AssertionError is thrown in a try-catch block, the finally block will be bypassed.
+# It is proper to handle assertion statement failures using a catch (AssertionException ae) block.
+
+### 175 What will be the output of the program?
+`
+public class X {
+    public static void main(String [] args)
+    {
+        try
+        {
+            badMethod();
+            System.out.print("A");
+        }
+        catch (Exception ex)
+        {
+            System.out.print("B");
+        }
+        finally
+        {
+            System.out.print("C");
+        }
+        System.out.print("D");
+    }
+    public static void badMethod()
+    {
+        throw new Error(); /* Line 22 */
+    }
+}`
+
+# ABCD
+# Compilation fails.
+# C is printed before exiting with an error message.
+# BC is printed before exiting with an error message.
+
+### 176 What will be the output of the program?
+`
+public class X
+{
+    public static void main(String [] args)
+    {
+        try
+        {
+            badMethod(); /* Line 7 */
+            System.out.print("A");
+        }
+        catch (Exception ex) /* Line 10 */
+        {
+            System.out.print("B"); /* Line 12 */
+        }
+        finally /* Line 14 */
+        {
+            System.out.print("C"); /* Line 16 */
+        }
+        System.out.print("D"); /* Line 18 */
+    }
+    public static void badMethod()
+    {
+        throw new RuntimeException();
+    }
+}`
+
+# AB
+# BC
+# ABC
+# BCD
+
+### 199 What will be the output of the program?
+`
+public class X
+{
+    public static void main(String [] args)
+    {
+        try
+        {
+            badMethod();
+            System.out.print("A");
+        }
+        catch (RuntimeException ex) /* Line 10 */
+        {
+            System.out.print("B");
+        }
+        catch (Exception ex1)
+        {
+            System.out.print("C");
+        }
+        finally
+        {
+            System.out.print("D");
+        }
+        System.out.print("E");
+    }
+    public static void badMethod()
+    {
+        throw new RuntimeException();
+    }
+}`
+
+# BD
+# BCD
+# BDE
+# BCDE
+
+### 200 At Point X on line 5, which code is necessary to make the code compile?
+`
+public class ExceptionTest
+{
+    class TestException extends Exception {}
+    public void runTest() throws TestException {}
+    public void test() /* Point X */
+    {
+        runTest();
+    }
+}`
+
+# No code is necessary.
+# throws Exception
+# catch ( Exception e )
+# throws RuntimeException
+
+### 207 Which of the following statements is true?
+
+# If assertions are compiled into a source file, and if no flags are included at runtime, assertions will execute by default.
+# As of Java version 1.4, assertion statements are compiled by default.
+# With the proper use of runtime arguments, it is possible to instruct the VM to disable assertions for a certain class, and to enable assertions for a certain package, at the same time.
+# When evaluating command-line arguments, the VM gives -ea flags precedence over -da flags.
+
+
+

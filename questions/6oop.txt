@@ -1,0 +1,615 @@
+### 007 что будет распечатано при попытке выполнить следующий код?
+`class A {
+    final int get(int a, int b) { return 0; }
+}
+class B extends A {
+    int get(int a, int b) { return 1; }
+}
+public class Test07{
+    public static void main(String args[])
+    {
+        B b = new B();
+        System.out.println("a=" + b.get(0, 1));
+    }`
+
+# a=0
+# a=1
+# Compilation fails
+# An exception will be thrown at the runtime
+
+### 031 Which of the following class level (nonlocal) variable declarations will not compile?
+
+# A. protected int a;
+# B. transient int b = 3;
+# C. private synchronized int e;
+# D. volatile int d;
+
+### 033 Which statement is true?
+`
+class A {
+    A() {}
+}
+
+class B extends A { }
+`
+
+# Class B'S constructor is public.
+# Class B'S constructor has no arguments.
+# Class B'S constructor includes a call to this( ).
+# None of these.
+
+### 034 which two statements, added independently at beginning of the program, allow the code to compile?
+`
+public class NewTreeSet extends java.java.util.TreeSet {
+    public static void main(String [] args) {
+        java.java.util.TreeSet t = new java.java.util.TreeSet();
+        t.clear();
+    }
+
+    public void clear() {
+        TreeMap m = new TreeMap();
+        m.clear();
+    }
+}
+`
+1. No statement is required
+2. import java.java.util.*;
+3. import.java.java.util.Tree*;
+4. import java.java.util.TreeSet;
+5. import java.java.util.TreeMap;
+
+# 1 only
+# 2 and 5
+# 3 and 4
+# 3 and 5
+
+### 035 What will be the output of the program?
+`class Two {
+     byte x;
+ }
+
+ class PassO {
+     public static void main(String [] args) {
+         PassO p = new PassO();
+         p.start();
+     }
+
+     void start() {
+         Two t = new Two();
+         System.out.print(t.x + " ");
+         Two t2 = fix(t);
+         System.out.println(t.x + " " + t2.x);
+     }
+
+     Two fix(Two tt) {
+         tt.x = 42;
+         return tt;
+     }
+ }`
+
+# null null 42
+# 0 0 42
+# 0 42 42
+# 0 0 0
+
+### 044 What will be the output of the program?
+`
+public class Test044 {
+    Test044() {
+        System.out.print("Aha");
+    }
+
+    class Inner {
+        Inner() {
+            System.out.print("Uhu");
+        }
+
+        public void go() {
+            System.out.print("Exe");
+        }
+    }
+
+    void makeInner() {
+        (new Inner() {}).go();
+    }
+
+    public static void main (String [] args) {
+        Test044 f = new Test044();
+        f.makeInner();
+    }
+}`
+
+# Compilation fails.
+# An error occurs at runtime.
+# It prints "AhaUhuExe"
+# It prints "AhaExeUhu"
+# It prints "AxaExe"
+
+### 051 What is the prototype of the default constructor?
+`public class Test { }`
+
+# Test( )
+# Test(void)
+# public Test( )
+# public Test(void)
+
+### 054 What will be the output of the program?
+`
+public class Test {
+    public static void main(String args[]) {
+        class Foo {
+            public int i = 3;
+        }
+        Object o = (Object)new Foo();
+        Foo foo = (Foo)o;
+        System.out.println("i = " + foo.i);
+    }
+}`
+
+# i = 3
+# Compilation fails.
+# i = 5
+# A ClassCastException will occur.
+
+### 055 What will be the output of the program?
+`
+public class A {
+    void A() /* Line 3 */ {
+        System.out.println("Class A");
+    }
+    public static void main(String[] args)
+    {
+        new A();
+    }
+}`
+
+# Class A
+# Compilation fails.
+# An exception is thrown at line 3.
+# The code executes with no output.
+
+### 060 Which class does not override the equals() and hashCode() methods, inheriting them directly from class Object?
+
+# java.lang.String
+# java.lang.Double
+# java.lang.StringBuffer
+# java.lang.Character
+
+### 063 Which is true about an anonymous inner class?
+
+# It can extend exactly one class and implement exactly one interface.
+# It can extend exactly one class and can implement multiple interfaces.
+# It can extend exactly one class or implement exactly one interface.
+# It can implement multiple interfaces regardless of whether it also extends a class.
+
+### 064 which statement, if placed in a class other than MyOuter or MyInner, instantiates an instance of the nested class?
+`
+public class MyOuter {
+    public static class MyInner {
+        public static void foo() { }
+    }
+}`
+
+# MyOuter.MyInner m = new MyOuter.MyInner();
+# MyOuter.MyInner mi = new MyInner();
+# MyOuter m = new MyOuter();
+MyOuter.MyInner mi = m.new MyOuter.MyInner();
+# MyInner mi = new MyOuter.MyInner();
+
+### 071 You want subclasses in any package to have access to members of a superclass. Which is the most restrictive access that accomplishes this objective?
+
+# public
+# private
+# protected
+# transient
+
+### 072 which two code fragments will compile?
+`
+interface Base {
+    boolean m1 ();
+    byte m2(short s);
+}
+
+1. interface Base2 implements Base {}
+2. abstract class Class2 extends Base { public boolean m1(){ return true; }}
+3. abstract class Class2 implements Base {}
+4. abstract class Class2 implements Base { public boolean m1(){ return (7 > 4); }}
+5. abstract class Class2 implements Base { protected boolean m1(){ return (5 > 7) }}
+`
+
+# 1 and 2
+# 2 and 3
+# 3 and 4
+# 1 and 5
+
+### 073 Which is valid in a class that extends class A?
+`
+class A {
+    protected int method1(int a, int b) {
+        return 0;
+    }
+}`
+
+# public int method1(int a, int b) {return 0; }
+# private int method1(int a, int b) { return 0; }
+# public short method1(int a, int b) { return 0; }
+# static protected int method1(int a, int b) { return 0; }
+
+### 083 What will be the output of the program?
+`
+class H {
+    public static void main (String[] args) {
+        Object x = new Vector().elements();
+        System.out.print((x instanceof Enumeration)+",");
+        System.out.print((x instanceof Iterator)+",");
+        System.out.print(x instanceof ListIterator);
+    }
+}`
+
+# Prints: false,false,false
+# Prints: false,false,true
+# Prints: false,true,false
+# Prints: true,false,false
+
+### 085 which statement, inserted at line 10, creates an instance of Bar?
+`
+class Foo {
+    class Bar{ }
+}
+class Test {
+    public static void main (String [] args) {
+        Foo f = new Foo();
+        /* Line 10: Missing statement ? */
+    }
+}`
+
+# Foo.Bar b = new Foo.Bar();
+# Foo.Bar b = f.new Bar();
+# Bar b = new f.Bar();
+# Bar b = f.new Bar();
+
+### 091 Given a method in a class, what access modifier do you use to restrict access to that method to only the other members of the same class?
+
+# final
+# static
+# private
+# protected
+# volatile
+
+### 092 which two code fragments inserted at end of the program, will allow to compile?
+`
+interface DoMath {
+    double getArea(int rad);
+}
+interface MathPlus {
+    double getVol(int b, int h);
+}
+
+1. class AllMath extends DoMath { double getArea(int r); }
+2. interface AllMath implements MathPlus { double getVol(int x, int y); }
+3. interface AllMath extends DoMath { float getAvg(int h, int l); }
+4. class AllMath implements MathPlus { double getArea(int rad); }
+5. abstract class AllMath implements DoMath, MathPlus { public double getArea(int rad) { return rad * rad * 3.14; } }`
+
+# 1 only
+# 2 only
+# 3 and 5
+# 1 and 4
+
+### 093 Which three statements are true?
+`
+1. The default constructor initialises method variables.
+2. The default constructor has the same access as its class.
+3. The default constructor invokes the no-arg constructor of the superclass.
+4. If a class lacks a no-arg constructor, the compiler always creates a default constructor.
+5. The compiler creates a default constructor only when there are no other constructors for the class.`
+
+# 1, 2 and 4
+# 2, 3 and 5
+# 3, 4 and 5
+# 1, 2 and 3
+
+### 111 What is the most restrictive access modifier that will allow members of one class to have access to members of another class in the same package?
+
+# public
+# abstract
+# protected
+# synchronized
+# default access
+
+### 112 You want a class to have access to members of another class in the same package. Which is the most restrictive access that accomplishes this objective?
+
+# public
+# private
+# protected
+# default access
+
+### 113 Which is a valid declaration within an interface?
+
+# public static short stop = 23;
+# protected short stop = 23;
+# transient short stop = 23;
+# final void madness(short stop);
+
+### 129 What will be the output of the program?
+`
+class Tree { }
+class Pine extends Tree { }
+class Oak extends Tree { }
+public class Forest1 {
+    public static void main (String [] args){
+        Tree tree = new Pine();
+        if( tree instanceof Pine )
+            System.out.println ("Pine");
+        else if( tree instanceof Tree )
+            System.out.println ("Tree");
+        else if( tree instanceof Oak )
+            System.out.println ( "Oak" );
+        else
+            System.out.println ("Oops ");
+    }
+}`
+
+# Pine
+# Tree
+# Forest
+# Oops
+
+### 133 What will be the output of the program?
+`
+class Super {
+    public Integer getLength() {
+        return new Integer(4);
+    }
+}
+
+public class Sub extends Super {
+    public Long getLength() {
+        return new Long(5);
+    }
+
+    public static void main(String[] args) {
+        Super sooper = new Super();
+        Sub sub = new Sub();
+        System.out.println(
+        sooper.getLength().toString() + "," + sub.getLength().toString() );
+    }
+}`
+
+# 4, 4
+# 4, 5
+# 5, 4
+# Compilation fails.
+
+### 150 What will be the output of the program?
+`
+class A {
+    public A(int x){}
+}
+class B extends A { }
+public class test {
+    public static void main (String args []) {
+        A a = new B();
+        System.out.println("complete");
+    }
+}`
+
+# It compiles and runs printing nothing
+# Compiles but fails at runtime
+# Compile Error
+# Prints "complete"
+
+### 151 Which two of the following are legal declarations for nonnested classes and interfaces?
+`
+final abstract class Test {}
+public static interface Test {}
+final public class Test {}
+protected abstract class Test {}
+protected interface Test {}
+abstract public class Test {}
+`
+
+# 1 and 4
+# 2 and 5
+# 3 and 6
+# 4 and 6
+
+### 157 which one create an anonymous inner class from within class Bar?
+`
+class Boo {
+    Boo(String s) { }
+    Boo() { }
+}
+class Bar extends Boo {
+    Bar() { }
+    Bar(String s) {super(s);}
+    void zoo()
+    {
+    // insert code here
+    }
+}`
+
+# Boo f = new Boo(24) { };
+# Boo f = new Bar() { };
+# Bar f = new Boo(String s) { };
+# Boo f = new Boo.Bar(String s) { };
+
+### 158 Which statement is true about a static nested class?
+
+# You must have a reference to an instance of the enclosing class in order to instantiate it.
+# It does not have access to nonstatic members of the enclosing class.
+# It's variables and methods must be static.
+# It must extend the enclosing class.
+
+### 159 Which constructs an anonymous inner class instance?
+
+# Runnable r = new Runnable() { };
+# Runnable r = new Runnable(public void run() { });
+# Runnable r = new Runnable { public void run(){}};
+# System.out.println(new Runnable() {public void run() { }});
+
+### 160 What will be the output of the program?
+`
+public class Test160 {
+    public static void main (String [] args) {
+        class Horse {
+            public String name; // 1
+            public Horse(String s) {
+                name = s;
+            }
+        }
+        Object obj = new Horse("Zippo"); // 2
+        Horse h = (Horse) obj; // 3
+        System.out.println(h.name);
+    }
+}`
+
+# An exception occurs at runtime at line 3.
+# It prints "Zippo".
+# Compilation fails because of an error on line 1.
+# Compilation fails because of an error on line 2.
+# Compilation fails because of an error on line 3.
+
+### 161 What will be the output of the program?
+`
+public abstract class AbstractTest {
+    public int getNum() {
+        return 45;
+    }
+    public abstract class Bar {
+        public int getNum() {
+            return 38;
+        }
+    }
+    public static void main (String [] args) {
+        AbstractTest t = new AbstractTest() {
+            public int getNum() {
+                return 22;
+            }
+        };
+        AbstractTest.Bar f = t.new Bar() {
+            public int getNum() {
+                return 57;
+            }
+        };
+
+        System.out.println(f.getNum() + " " + t.getNum());
+    }
+}`
+
+# 57 22
+# 45 38
+# 45 57
+# An exception occurs at runtime.
+
+### 168 What will be the output of the program?
+`
+public class WrapTest {
+    public static void main(String [] args) {
+        int result = 0;
+        short s = 42;
+        Long x = new Long("42");
+        Long y = new Long(42);
+        Short z = new Short("42");
+        Short x2 = new Short(s);
+        Integer y2 = new Integer("42");
+        Integer z2 = new Integer(42);
+
+        if (x == y) /* Line 13 */
+            result = 1;
+        if (x.equals(y) ) /* Line 15 */
+            result = result + 10;
+        if (x.equals(z) ) /* Line 17 */
+            result = result + 100;
+        if (x.equals(x2) ) /* Line 19 */
+            result = result + 1000;
+        if (x.equals(z2) ) /* Line 21 */
+            result = result + 10000;
+       System.out.println("result = " + result);
+    }
+}`
+
+# result = 1
+# result = 10
+# result = 11
+# result = 11010
+
+### 171 What will be the output of the program?
+`
+class Super{
+    public int i = 0;
+
+    public Super(String text) /* Line 4 */{
+        i = 1;
+    }
+}
+
+class Sub extends Super{
+    public Sub(String text)
+    {
+        i = 2;
+    }
+
+    public static void main(String args[])
+    {
+        Sub sub = new Sub("Hello");
+        System.out.println(sub.i);
+    }
+}`
+
+# 0
+# 1
+# 2
+# Compilation fails
+# Runtime Exception
+
+### 172 What will be the output of the program?
+`
+class Base
+{
+    Base()
+    {
+        System.out.print("Base");
+    }
+}
+public class Alpha extends Base
+{
+    public static void main(String[] args)
+    {
+        new Alpha(); /* Line 12 */
+        new Base(); /* Line 13 */
+    }
+}`
+
+# Base
+# BaseBase
+# Compilation fails
+# The code runs with no output
+
+### 173 What will be the output of the program?
+`
+import java.java.util.*;
+public class NewTreeSet2 extends NewTreeSet
+{
+    public static void main(String [] args)
+    {
+        NewTreeSet2 t = new NewTreeSet2();
+        t.count();
+    }
+}
+protected class NewTreeSet
+{
+    void count()
+    {
+        for (int x = 0; x < 7; x++,x++ )
+        {
+            System.out.print(" " + x);
+        }
+    }
+}`
+
+# 0 2 4
+# 0 2 4 6
+# Compilation fails at line 2
+# Compilation fails at line 10
+

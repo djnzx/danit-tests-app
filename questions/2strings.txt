@@ -1,0 +1,86 @@
+### 070 What will be the output of the program?
+`
+String a = "ABCD";
+String b = a.toLowerCase();
+b.replace('a','d');
+b.replace('b','c');
+System.out.println(b);
+`
+
+# abcd
+# ABCD
+# dccd
+# dcba
+
+### 119 What will be the output of the program?
+`
+public class Test {
+    public static void main (String args[]) {
+        String str = NULL;
+        System.out.println(str);
+    }
+}`
+
+# NULL
+# Compile Error
+# Code runs but no output
+# Runtime Exception
+
+### 128 What will be the output of the program?
+`
+String x = "xyz";
+x.toUpperCase(); /* Line 2 */
+String y = x.replace('Y', 'y');
+y = y + "abc";
+System.out.println(y);`
+
+# abcXyZ
+# abcxyz
+# xyzabc
+# XyZabc
+
+### 169 What will be the output of the program?
+`
+class Test169 {
+    public static void main(String[] args) {
+        int i1 = 5;
+        int i2 = 6;
+        String s1 = "7";
+        System.out.println(i1 + i2 + s1);
+    }
+}`
+
+# 18
+# 117
+# 567
+# Compiler error
+
+### 170 What will be the output of the program?
+`
+public class StringRef {
+    public static void main(String [] args) {
+        String s1 = "abc";
+        String s2 = "def";
+        String s3 = s2;   /* Line 7 */
+        s2 = "ghi";
+        System.out.println(s1 + s2 + s3);
+    }
+}
+`
+
+# abcdefghi
+# abcdefdef
+# abcghidef
+# abcghighi
+
+### 187 How many String objects have been created?
+`
+String x = new String("xyz");
+String y = "abc";
+x = x + y;`
+
+# 2
+# 3
+# 4
+# 5
+

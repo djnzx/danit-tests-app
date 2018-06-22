@@ -1,0 +1,178 @@
+### 045 At what point is the Bar object, created on line 6, eligible for garbage collection?
+`
+class Bar { }
+class Test {
+    Bar doBar() {
+        Bar b = new Bar(); // 6
+        return b; // 7
+    }
+    public static void main (String args[]) {
+        Test t = new Test();  // 11
+        Bar newBar = t.doBar();  // 12
+        System.out.println("newBar");
+        newBar = new Bar(); // 14
+        System.out.println("finishing"); // 15
+    }
+}
+`
+
+# after line 12
+# after line 14
+# after line 7, when doBar() completes
+# after line 15, when main() completes
+
+### 046 When is the Demo object eligible for garbage collection?
+`
+class Test {
+    private Demo d;
+    void start()
+    {
+        d = new Demo();
+        this.takeDemo(d); /* Line 7 */
+    } /* Line 8 */
+    void takeDemo(Demo demo)
+    {
+        demo = null;
+        demo = new Demo();
+    }
+}
+`
+
+# After line 7
+# After line 8
+# After the start() method completes
+# When the instance running this code is made eligible for garbage collection.
+
+### 047 After line 8 runs. how many objects are eligible for garbage collection?
+`
+public class X {
+    public static void main(String [] args)
+    {
+        X x = new X();
+        X x2 = m1(x); /* Line 6 */
+        X x4 = new X();
+        x2 = x4; /* Line 8 */
+        doComplexStuff();
+    }
+    static X m1(X mx)
+    {
+        mx = new X();
+        return mx;
+    }
+}
+`
+
+# 0
+# 1
+# 2
+# 3
+
+### 069 garbage collector
+`
+public Object m() {
+    Object o = new Float(3.14F);
+    Object[] oa = new Object[l];
+    oa[0] = o; /* Line 5 */
+    o = null;  /* Line 6 */
+    oa[0] = null; /* Line 7 */
+    return o; /* Line 8 */
+}`
+
+# just after line 5
+# just after line 6
+# just after line 7
+# just after line 8
+
+### 105 Which statement is true?
+
+# Calling Runtime.gc() will cause eligible objects to be garbage collected.
+# The garbage collector uses a mark and sweep algorithm.
+# If an object can be accessed from a live thread, it can't be garbage collected.
+# If object 1 refers to object 2, then object 2 can't be garbage collected.
+
+### 124 Which statement is true?
+
+# Memory is reclaimed by calling Runtime.gc().
+# Objects are not collected if they are accessible from live threads.
+# An OutOfMemory error is only thrown if a single block of memory cannot be found that is large enough for a particular requirement.
+# Objects that have finalize() methods always have their finalize() methods called before the program ends.
+
+### 166 What allows the programmer to destroy an object x?
+
+# x.delete()
+# x.finalize()
+# Runtime.getRuntime().gc()
+# Only the garbage collection system can destroy an object.
+
+### 181 Which cannot directly cause a thread to stop executing?
+``
+
+# Calling the SetPriority() method on a Thread object.
+# Calling the wait() method on an object.
+# Calling notify() method on an object.
+# Calling read() method on an InputStream object.
+
+### 182 Which method registers a thread in a thread scheduler?
+``
+
+# run();
+# construct();
+# start();
+# register();
+
+### 183 which of these will create and start this thread?
+`
+public class MyRunnable implements Runnable
+{
+    public void run()
+    {
+        // some code here
+    }
+}
+`
+
+# new Runnable(MyRunnable).start();
+# new Thread(MyRunnable).run();
+# new Thread(new MyRunnable()).start();
+# new MyRunnable().start();
+
+### 184 When is the B object, created in line 3, eligible for garbage collection?
+`
+void start() {
+    A a = new A();
+    B b = new B();
+    a.s(b);
+    b = null; /* Line 5 */
+    a = null;  /* Line 6 */
+    System.out.println("start completed"); /* Line 7 */
+}
+`
+
+# after line 5
+# after line 6
+# after line 7
+# There is no way to be absolutely certain.
+
+### 185 after line 11 runs, how many objects are eligible for garbage collection?
+`
+class X2
+{
+    public X2 x;
+    public static void main(String [] args)
+    {
+        X2 x2 = new X2();  /* Line 6 */
+        X2 x3 = new X2();  /* Line 7 */
+        x2.x = x3;
+        x3.x = x2;
+        x2 = new X2();
+        x3 = x2; /* Line 11 */
+        doComplexStuff();
+    }
+}`
+
+# 0
+# 1
+# 2
+# 3
+
+

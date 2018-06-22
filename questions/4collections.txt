@@ -1,0 +1,226 @@
+### 014 какие выражения действительны java.java.util.ArrayList?
+# элементы коллекции отсортированы.
+# элементы коллекции иммутабельны.
+# элементы коллекции уникальны
+# элементы коллекции доступны через уникальный ключ
+
+### 015 какие выражения истинны для method-local inner class
+# It must be marked final.
+# It can be marked abstract.
+# It can be marked public.
+# It can be marked static.
+
+### 028 What will be printer
+`public class Quizz2 {
+     public static void main(String[] args) {
+         int[] numbers = {1,5,7,2,4};
+         Queue<Integer> myQueue = new PriorityQueue<>();
+         int index = 0;
+         while(index < numbers.length) {
+             myQueue.add(numbers[index]);
+             index++;
+         }
+         System.out.println(myQueue);
+     }
+ }`
+
+# 1, 2, 4, 5, 7
+# 7, 5, 4, 2, 1
+# 1, 5, 7, 2, 4
+# other
+# undetermined
+
+### 029 What will be printed
+`public class Quizz3 {
+     public static void main(String[] args) {
+         HashSet<Short> set = new HashSet<>();
+         System.out.println(set.size());
+         for (short i = 0; i < 100; i++) {
+             set.add(i);
+             set.remove(i-1);
+         }
+         System.out.println(set.size());
+     }
+ }`
+
+# 0
+# 1
+# 100
+# 99
+# Runtime Exception
+# Compiler error
+
+### 043 Which statement is true?
+
+`class Test1 {
+     public int value;
+     public int hashCode() { return 42; }
+ }
+ class Test2 {
+     public int value;
+     public int hashcode() { return (int)(value^5); }
+ }
+`
+
+# class Test1 will not compile.
+# The Test1 hashCode() method is more efficient than the Test2 hashCode() method.
+# The Test1 hashCode() method is less efficient than the Test2 hashCode() method.
+# class Test2 will not compile.
+
+### 061 You need to store elements in a collection that guarantees that no duplicates are stored and all elements can be accessed in natural order. Which interface provides that capability?
+
+# java.java.util.Map
+# java.java.util.Set
+# java.java.util.List
+# java.java.util.Collection
+
+### 084 What will be the output of the program?
+`
+TreeSet map = new TreeSet();
+map.add("one");
+map.add("two");
+map.add("three");
+map.add("four");
+map.add("one");
+Iterator it = map.iterator();
+while (it.hasNext() ) {
+    System.out.print( it.next() + " " );
+}`
+
+# one two three four
+# four three two one
+# four one three two
+# one two three four one
+# order in which items will be printed is undefined
+
+### 118 Which collection class allows you to grow or shrink its size and provides indexed access to its elements, but whose methods are not synchronized?
+
+# java.java.util.HashSet
+# java.java.util.LinkedHashSet
+# java.java.util.List
+# java.java.util.ArrayList
+
+### 140 Which interface provides the capability to store objects using a key-value pair?
+
+# Java.java.util.Map
+# Java.java.util.Set
+# Java.java.util.List
+# Java.java.util.Collection
+
+### 141 Which of the following statements about the hashcode() method are incorrect?
+`
+The value returned by hashcode() is used in some collection classes to help locate objects.
+The hashcode() method is required to return a positive int value.
+The hashcode() method in the String class is the one inherited from Object.
+Two new empty String objects will produce identical hashcodes.
+`
+
+# 1 and 2
+# 2 and 3
+# 3 and 4
+# 1 and 4
+
+### 155 Which two statements are true about comparing two instances of the same class, given that the equals() and hashCode() methods have been properly overridden?
+`
+If the equals() method returns true, the hashCode() comparison == must return true.
+If the equals() method returns false, the hashCode() comparison != must return true.
+If the hashCode() comparison == returns true, the equals() method must return true.
+If the hashCode() comparison == returns true, the equals() method might return true.
+`
+
+# 1 and 4
+# 2 and 3
+# 3 and 4
+# 1 and 3
+
+### 156 Assuming that the equals() and hashCode() methods are properly implemented, if the output is "x = 1111", which of the following statements will always be true?
+`
+x = 0;
+if (x1.hashCode() != x2.hashCode() )  x = x + 1;
+if (x3.equals(x4) )  x = x + 10;
+if (!x5.equals(x6) ) x = x + 100;
+if (x7.hashCode() == x8.hashCode() )  x = x + 1000;
+System.out.println("x = " + x);`
+
+# x2.equals(x1)
+# x3.hashCode() == x4.hashCode()
+# x5.hashCode() != x6.hashCode()
+# x8.equals(x7)
+
+### 177 Which interface does java.java.util.Hashtable implement?
+
+# Java.java.util.Map
+# Java.java.util.List
+# Java.java.util.HashTable
+# Java.java.util.Collection
+
+### 178 What will be the output of the program?
+`
+package foo;
+import java.java.util.Vector; /* Line 2 */
+private class MyVector extends Vector
+{
+    int i = 1; /* Line 5 */
+    public MyVector()
+    {
+        i = 2;
+    }
+}
+public class MyNewVector extends MyVector
+{
+    public MyNewVector ()
+    {
+        i = 4; /* Line 15 */
+    }
+    public static void main (String args [])
+    {
+        MyVector v = new MyNewVector(); /* Line 19 */
+    }
+}`
+
+# Compilation will succeed.
+# Compilation will fail at line 3.
+# Compilation will fail at line 5.
+# Compilation will fail at line 15.
+
+### 179 What two statements are true about properly overridden hashCode() and equals() methods?
+`
+hashCode() doesn't have to be overridden if equals() is.
+equals() doesn't have to be overridden if hashCode() is.
+hashCode() can always return the same value, regardless of the object that invoked it.
+equals() can be true even if it's comparing different objects.
+`
+
+# 1 and 2
+# 2 and 3
+# 3 and 4
+# 1 and 3
+
+### 201 You need to store elements in a collection that guarantees that no duplicates are stored. Which one of the following interfaces provide that capability?
+
+# Java.java.util.Map
+# Java.java.util.List
+# Java.java.util.Collection
+# None of the above
+
+### 202 Which collection class allows you to access its elements by associating a key with an element's value, and provides synchronization?
+
+# java.java.util.SortedMap
+# java.java.util.TreeMap
+# java.java.util.TreeSet
+# java.java.util.Hashtable
+
+### 204 Which of the following are true statements?
+`
+The Iterator interface declares only three methods: hasNext, next and remove.
+The ListIterator interface extends both the List and Iterator interfaces.
+The ListIterator interface provides forward and backward iteration capabilities.
+The ListIterator interface provides the ability to modify the List during iteration.
+The ListIterator interface provides the ability to determine its position in the List.
+`
+
+# 2, 3, 4 and 5
+# 1, 3, 4 and 5
+# 3, 4 and 5
+# 1, 2 and 3
+
