@@ -15,15 +15,15 @@ public class NullableArrayWrapper<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public <L extends Collection<T>> L get(Supplier<? extends Collection<T>> supp) {
-        Collection<T> c = supp.get();
+    public <L extends Collection<T>> L get(Supplier<? extends Collection<T>> supplier) {
+        Collection<T> c = supplier.get();
         if (raw != null) {
             c.addAll(Arrays.asList(raw));
         }
         return (L) c;
     }
 
-    public <X extends Object> X utimate(Supplier<X> supp) {
+    public <X extends Object> X ultimate(Supplier<X> supp) {
         return supp.get();
     }
 
@@ -51,7 +51,7 @@ public class NullableArrayWrapper<T> {
 
         System.out.println(integers20);
         System.out.println(integers21);
-        String utimate = new NullableArrayWrapper<>(i1).utimate(String::new);
+        String utimate = new NullableArrayWrapper<>(i1).ultimate(String::new);
     }
 }
 

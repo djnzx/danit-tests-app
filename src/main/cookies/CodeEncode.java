@@ -62,7 +62,7 @@ public class CodeEncode {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
-            return code64(cipher.doFinal(value.getBytes()));
+            return code64(cipher.doFinal(code64(value).getBytes()));
         } catch (Exception ex) {
             throw new IllegalArgumentException("CodeEncode: can't encode");
         }
@@ -72,7 +72,7 @@ public class CodeEncode {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
-            return new String(cipher.doFinal(decode64toBytes(encrypted)));
+            return decode64(new String(cipher.doFinal(decode64toBytes(encrypted))));
         } catch (Exception ex) {
             throw new IllegalArgumentException("CodeEncode: can't decode");
         }
@@ -80,10 +80,14 @@ public class CodeEncode {
 
     public static void main(String[] args) {
         CodeEncode cc = new CodeEncode();
-        String s="Sensitive data";
+
+        String s="!Sensitive_data#";
         System.out.printf("Initial  :'%s'\n", s);
+
         String enc = cc.encrypt(s);
         System.out.printf("Encrypted:'%s'\n", enc);
-        System.out.printf("Decrypted:'%s'\n", cc.decrypt("VOf0urW2qIqI0nXr9LayMw=="));
+
+        String dec = cc.decrypt(enc);
+        System.out.printf("Decrypted:'%s'\n", dec);
     }
 }
