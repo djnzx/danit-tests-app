@@ -1,3 +1,8 @@
+CREATE SEQUENCE answers_a_id_seq;
+CREATE SEQUENCE groups_g_id_seq;
+CREATE SEQUENCE questions_q_id_seq;
+CREATE SEQUENCE users_u_id_seq;
+
 CREATE TABLE answer
 (
     a_id INTEGER DEFAULT nextval('answers_a_id_seq'::regclass) PRIMARY KEY NOT NULL,
@@ -27,3 +32,8 @@ CREATE TABLE users
     u_passwd VARCHAR(32),
     u_group INTEGER
 );
+
+SELECT setval('answers_a_id_seq', (SELECT MAX(a_id) FROM answer)+1);
+SELECT setval('groups_g_id_seq', (SELECT MAX(g_id) FROM "group")+1);
+SELECT setval('questions_q_id_seq', (SELECT MAX(q_id) FROM question)+1);
+SELECT setval('users_u_id_seq', (SELECT MAX(u_id) FROM users)+1);
