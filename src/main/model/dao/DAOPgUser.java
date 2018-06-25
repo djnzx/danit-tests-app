@@ -12,7 +12,11 @@ public class DAOPgUser implements DAO<User> {
     private final DataSource source;
 
     public DAOPgUser(DbConn conn) {
-        this.source = conn.source();
+        this(conn.source());
+    }
+
+    public DAOPgUser(DataSource src) {
+        this.source = src;
     }
 
     @Override

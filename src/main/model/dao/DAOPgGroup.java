@@ -8,10 +8,10 @@ import model.outcome.OutcomeGroup;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
-public class DAOPgGgoup implements DAO<Group> {
+public class DAOPgGroup implements DAO<Group> {
     private final DataSource source;
 
-    public DAOPgGgoup(DbConn conn) {
+    public DAOPgGroup(DbConn conn) {
         this.source = conn.source();
     }
 
