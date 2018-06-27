@@ -2,6 +2,8 @@ package model.dao;
 
 import model.dto.AbstractEntity;
 
+import java.util.List;
+
 public interface DAO<T extends AbstractEntity> {
     default T select(int pk)  {
         return get(pk);
@@ -20,4 +22,5 @@ public interface DAO<T extends AbstractEntity> {
         delete(entity.getId());
     }
     void delete(int pk);
+    List<T> all();
 }

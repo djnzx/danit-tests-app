@@ -7,6 +7,7 @@ import model.dto.User;
 import model.outcome.OutcomeUser;
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DAOPgUser implements DAO<User> {
     private final DataSource source;
@@ -76,6 +77,11 @@ public class DAOPgUser implements DAO<User> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<User> all() {
+        return null;
     }
 
     public static void main(String[] args) throws SQLException {

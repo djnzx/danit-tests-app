@@ -8,6 +8,7 @@ import model.outcome.OutcomeProcess;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DAOPgProcess implements DAO<Process> {
     private final DataSource source;
@@ -75,5 +76,10 @@ public class DAOPgProcess implements DAO<Process> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Process> all() {
+        return null;
     }
 }

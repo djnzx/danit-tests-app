@@ -8,6 +8,7 @@ import model.outcome.OutcomeQuestion;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DAOPgQuestion implements DAO<Question> {
     private final DataSource source;
@@ -71,5 +72,10 @@ public class DAOPgQuestion implements DAO<Question> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Question> all() {
+        return null;
     }
 }
