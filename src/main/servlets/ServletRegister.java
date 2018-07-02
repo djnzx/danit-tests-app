@@ -1,11 +1,10 @@
 package servlets;
 
+import cookies.CodeEncode;
 import logic.Ent;
 import logic.InMemory;
 import logic.Persistence;
-import model.dao.DAO;
 import model.dao.DAOPgUser;
-import model.dto.AbstractEntity;
 import model.dto.Group;
 import model.dto.User;
 import org.slf4j.Logger;
@@ -38,8 +37,9 @@ public class ServletRegister extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         InMemory<Group> inG = persistence.get(Ent.Group);
-        HashMap<String, Object> data = new HashMap<>();
-        data.put("groups", inG.dao().all());
+        HashMap<String, Object> data = new HashMap<String, Object>(){{
+            put("groups", inG.dao().all());
+        }};
         template.render("register.html", data, resp);
     }
 
@@ -55,7 +55,7 @@ public class ServletRegister extends HttpServlet {
             List<User> byLogin = dao.getByLogin(p.get(f_lg));
             if (byLogin.size()==0) {
                 // insert
-                User store = dao.store(new User(p.get(f_nm), p.get(f_lg), p.get(f_p1), p.get(f_gr)));
+                User store = dao.store(new User(p.get(f_nm), p.get(f_lg), new CodeEncode().encrypt(p.get(f_p1)), p.get(f_gr)));
                 template.render("register-ok.html", data, resp);
             } else {
                 data.put("message", new MessageError("User already registered, please recall your password or register with another e-mail"));

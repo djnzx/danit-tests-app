@@ -19,6 +19,10 @@ public class CookiesEncrypted implements Cookies {
     private final CodeEncode coder =new CodeEncode();
     private final Cookies cookies;
 
+    public CookiesEncrypted() {
+        this(new CookiesStandard());
+    }
+
     public CookiesEncrypted(final HttpServletRequest cookies) {
         this(new CookiesStandard(cookies));
     }

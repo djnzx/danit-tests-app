@@ -1,4 +1,5 @@
-import filters.FilterServletPost;
+import filters.FilterServletPostLogin;
+import filters.FilterServletPostRegister;
 import logic.Persistence;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -16,11 +17,12 @@ public class AppDanTest {
         new Server(8080) {{
             setHandler(new ServletContextHandler(){{
                 addServlet(new ServletHolder(new ServletAssets()),"/assets/*");
-                addServlet(new ServletHolder(new ServletLogin()),"/login");
+                addServlet(new ServletHolder(new ServletLogin(persistence, template)),"/login");
                 addServlet(new ServletHolder(new ServletLogout(template)),"/logout");
                 addServlet(new ServletHolder(new ServletRegister(persistence, template)),"/register");
                 addServlet(new ServletHolder(new ServletMenu(template)),"/*");
-                addFilter(FilterServletPost.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+                addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+                addFilter(FilterServletPostLogin.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
             }});
             start();
             join();
