@@ -47,11 +47,13 @@
             <version>0.8.0.RELEASE</version>
         </dependency>
         <!-- amazon AWS -->
+<!--
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk</artifactId>
             <version>1.11.327</version>
         </dependency>
+-->
         <!-- https://mvnrepository.com/artifact/com.jcabi/jcabi-jdbc -->
         <dependency>
             <groupId>com.jcabi</groupId>
@@ -59,11 +61,13 @@
             <version>0.17</version>
         </dependency>
         <!-- cactoos -->
+<!--
         <dependency>
             <groupId>org.cactoos</groupId>
             <artifactId>cactoos</artifactId>
             <version>0.35</version>
         </dependency>
+-->
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>

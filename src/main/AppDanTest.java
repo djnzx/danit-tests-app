@@ -1,3 +1,4 @@
+import filters.FilterServletAnybodyLogged;
 import filters.FilterServletPostLogin;
 import filters.FilterServletPostRegister;
 import logic.Persistence;
@@ -20,9 +21,11 @@ public class AppDanTest {
                 addServlet(new ServletHolder(new ServletLogin(persistence, template)),"/login");
                 addServlet(new ServletHolder(new ServletLogout(template)),"/logout");
                 addServlet(new ServletHolder(new ServletRegister(persistence, template)),"/register");
+                addServlet(new ServletHolder(new ServletTest(persistence, template)),"/test");
                 addServlet(new ServletHolder(new ServletMenu(template)),"/*");
                 addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
                 addFilter(FilterServletPostLogin.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+                addFilter(FilterServletAnybodyLogged.class, "/test", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
             }});
             start();
             join();
