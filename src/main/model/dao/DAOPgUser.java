@@ -1,12 +1,16 @@
 package model.dao;
 
 import com.jcabi.jdbc.JdbcSession;
+import com.jcabi.jdbc.Outcome;
 import model.PgDatabase;
 import model.DbConn;
 import model.dto.User;
 import model.outcome.OutcomeUser;
 import javax.sql.DataSource;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOPgUser implements DAO<User> {
@@ -31,6 +35,34 @@ public class DAOPgUser implements DAO<User> {
             e.printStackTrace();
         }
         return new User();
+    }
+
+    public List<User> getByLogin(String name) {
+        try {
+            return new JdbcSession(source)
+                    .sql("SELECT * FROM users WHERE UPPER(u_login) LIKE UPPER(?)")
+                    .set("%"+name+"%")
+                    .select(new Outcome<List<User>>() {
+                        @Override
+                        public List<User> handle(ResultSet r, Statement stmt) throws SQLException {
+                            List<User> ent = new ArrayList<>();
+                            while (r.next()) {
+                                ent.add(new User(
+                                        r.getInt("u_id"),
+                                        r.getString("u_name"),
+                                        r.getTimestamp("u_regdate"),
+                                        r.getString("u_login"),
+                                        r.getString("u_passwd"),
+                                        r.getInt("u_group")
+                                        ));
+                            }
+                            return ent;
+                        }
+                    });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 
     @Override

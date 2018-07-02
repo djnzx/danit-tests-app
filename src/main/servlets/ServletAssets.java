@@ -18,6 +18,5 @@ public class ServletAssets extends HttpServlet {
         log.info(req.getPathInfo());
         resp.getOutputStream().write(Files.readAllBytes(
                 Paths.get("./assets", req.getPathInfo())));
-
     }
 }

@@ -17,9 +17,13 @@ public class User extends AbstractEntity {
         this.login = login;
     }
 
+    public User(String name, String login, String passwd, String groupId) {
+        this(name, login, passwd, Integer.parseInt(groupId));
+    }
+
     public User(String name, String login, String passwd, int groupId) {
-        this.name = name;
-        this.login = login;
+        this.name = name.trim();
+        this.login = login.trim();
         this.passwd = passwd;
         this.groupId = groupId;
     }

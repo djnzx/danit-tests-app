@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 
 public class FreeMarker {
@@ -19,6 +20,10 @@ public class FreeMarker {
         config.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         config.setLogTemplateExceptions(false);
         config.setWrapUncheckedExceptions(true);
+    }
+
+    public void render(String templateFile, HttpServletResponse resp) throws IOException {
+        render(templateFile, new HashMap<>(), resp);
     }
 
     public void render(String templateFile, Map<String, Object> data, HttpServletResponse resp) throws IOException {

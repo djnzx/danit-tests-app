@@ -15,16 +15,15 @@
     <form class="form-signin" action="register" method="post">
         <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
-        <input name="login" class="form-control" placeholder="Login">
+        <input class="form-control" name="name" placeholder="Name" required>
+        <input class="form-control" name="login" placeholder="Login (email)" required>
         <select name="group" class="form-control">
             <#list groups as g>
             <option value="${g.id}">${g.name}</option>
         </#list>
         </select>
-        <label for="inputPassword1" class="sr-only">Password</label>
-        <label for="inputPassword2" class="sr-only">Password (repeat)</label>
-        <input type="password" name="passwd1" id="inputPassword1" class="form-control" placeholder="Password" required>
-        <input type="password" name="passwd2" id="inputPassword2" class="form-control" placeholder="Password" required>
+        <input class="form-control" type="password" name="passwd1" id="inputPassword1" placeholder="Password" required>
+        <input class="form-control" type="password" name="passwd2" id="inputPassword2" placeholder="Password (repeat)" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         <p class="mt-5 mb-3 text-muted">&copy; Dan.IT 2018</p>
     </form>

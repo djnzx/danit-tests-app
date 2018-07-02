@@ -17,7 +17,8 @@ public interface Cookies extends Iterable<Cookie> {
     default Iterator<Cookie> iterator() {
         return all().iterator();
     }
-    default void dieAll() {
+    default Cookies dieAll() {
         all().forEach(c->c.setMaxAge(0));
+        return this;
     }
 }

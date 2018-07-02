@@ -24,7 +24,7 @@ public class ServletMenu extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Cookies cs = new CookiesStandard(req);
         Cookies ce = new CookiesEncrypted(cs);
-        template.render("menu.html", new HashMap<>(), resp);
+        template.render("menu.html", resp);
         PrintWriter w = resp.getWriter();
 
         Arrays.asList("A1", "A2", "X1", "X2").forEach(s -> w.write("std:" + s + ":" + (cs.exists(s) ? cs.get(s).toString() : " n/a") + "<br>"));
