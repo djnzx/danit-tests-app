@@ -1,9 +1,20 @@
 package cookies;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 public class Session {
     public final String cookieUID = "UID";
     private final Cookies cookies;
     private final int howLongLoggedIn = 60*60*24;
+
+    public Session(ServletRequest req) {
+        this((HttpServletRequest)req);
+    }
+
+    public Session(HttpServletRequest req) {
+        this(new CookiesEncrypted(req));
+    }
 
     public Session() {
         this(new CookiesEncrypted());

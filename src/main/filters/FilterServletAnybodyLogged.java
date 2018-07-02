@@ -1,14 +1,11 @@
 package filters;
 
-import params.Params;
-import servlets.ServletLogin;
-
+import cookies.Session;
 import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class FilterServletPostLogin implements Filter {
+public class FilterServletAnybodyLogged implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
 
@@ -16,13 +13,10 @@ public class FilterServletPostLogin implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        if (httpRequest.getMethod().equalsIgnoreCase("POST")
-                && !new Params(httpRequest).containsAll(ServletLogin.f_lg, ServletLogin.f_pw)) {
+        if (!new Session(request).isAnybodyLogged()) {
             ((HttpServletResponse)response).sendRedirect("/login");
-        } else {
-            chain.doFilter(request, response);
         }
+        chain.doFilter(request, response);
     }
 
     @Override
