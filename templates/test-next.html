@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/assets/img/favicon.ico">
+
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+<div class="container">
+    <p>Hello, ${user.name} (${group.name})</p>
+    <p>${qanda.question().header}</p>
+    <p>${qanda.question().textHtml()}</p>
+
+    <form action="test" method="post">
+        <input type="text" name="question" value="${qanda.question().id?string.computer}" hidden>
+        <#list qanda.answers() as aw>
+        <input type="radio" id="contactChoice${aw.id?string.computer}" name="answer" value="${aw.id?string.computer}">
+        <label for="contactChoice${aw.id?string.computer}">${aw.text}</label>
+        <br>
+        </#list>
+        <br>
+        <input type="radio" id="contactChoiceN" name="answer" value="skip">
+        <label for="contactChoiceN">Skip this question</label>
+        <br>
+        <input type="radio" id="contactChoiceF" name="answer" value="pause">
+        <label for="contactChoiceF">Pause test</label>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

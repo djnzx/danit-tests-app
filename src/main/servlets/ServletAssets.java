@@ -15,7 +15,7 @@ public class ServletAssets extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        log.info(req.getPathInfo());
+        log.debug(req.getPathInfo());
         resp.getOutputStream().write(Files.readAllBytes(
                 Paths.get("./assets", req.getPathInfo())));
     }

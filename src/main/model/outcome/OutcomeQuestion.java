@@ -12,8 +12,8 @@ public class OutcomeQuestion implements Outcome<Question> {
         Question q = new Question();
         if (r.next()) {
             q.setId(r.getInt("q_id"));
-            q.setText(r.getString("q_number"));
-            q.setText(r.getString("q_header"));
+            q.setNumber(r.getString("q_number"));
+            q.setHeader(r.getString("q_header"));
             q.setText(r.getString("q_text"));
             q.setDate(r.getTimestamp("q_date_add"));
         }

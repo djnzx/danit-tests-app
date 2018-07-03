@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.alexr</groupId>
-    <artifactId>dan-twsts</artifactId>
-    <version>0.3</version>
+    <artifactId>dan-tests</artifactId>
+    <version>0.9</version>
 
     <properties>
         <jetty.version>9.4.6.v20170531</jetty.version>

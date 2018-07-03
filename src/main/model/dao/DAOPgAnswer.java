@@ -4,9 +4,11 @@ import com.jcabi.jdbc.JdbcSession;
 import model.DbConn;
 import model.dto.Answer;
 import model.outcome.OutcomeAnswer;
+import model.outcome.OutcomeAnswerList;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOPgAnswer implements DAO<Answer>{
@@ -75,5 +77,17 @@ public class DAOPgAnswer implements DAO<Answer>{
     @Override
     public List<Answer> all() {
         return null;
+    }
+
+    public List<Answer> getAllByQuestion(int id) {
+        try {
+            return new JdbcSession(source)
+                    .sql("SELECT * FROM answer WHERE a_question_id = ?")
+                    .set(id)
+                    .select(new OutcomeAnswerList());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 }

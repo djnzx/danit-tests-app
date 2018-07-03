@@ -1,13 +1,18 @@
 package model.dao;
 
 import com.jcabi.jdbc.JdbcSession;
+import com.jcabi.jdbc.ListOutcome;
+import com.jcabi.jdbc.Outcome;
 import com.jcabi.jdbc.Utc;
 import model.DbConn;
 import model.dto.Question;
 import model.outcome.OutcomeQuestion;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOPgQuestion implements DAO<Question> {
@@ -77,5 +82,26 @@ public class DAOPgQuestion implements DAO<Question> {
     @Override
     public List<Question> all() {
         return null;
+    }
+
+    public List<Integer> availableByUser(int id) {
+        final String sql = "  SELECT q_id FROM question WHERE q_id NOT IN " +
+                        "  ( " +
+                        "    SELECT p_question " +
+                        "    FROM process " +
+                        "    WHERE " +
+                        "      p_user = ? AND p_answer>0 " +
+                        "    GROUP BY p_question " +
+                        "  )" +
+                        " ORDER BY q_id";
+        try {
+            return new JdbcSession(source)
+                    .sql(sql)
+                    .set(id)
+                    .select(new ListOutcome<>(r -> r.getInt("q_id")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 }

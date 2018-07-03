@@ -15,10 +15,13 @@
 <body>
 
 <div class="container">
-    <p class="form-signin">
-tests<br>
-        ${message.get()}
-    </p>
+    <div class="form-signin">
+        <p>${user.name},<br>
+            your test paused,<br>
+            you can continue your test any time;<br>
+            all the answers have been stored in the database</p>
+        <a class="btn btn-lg btn-primary btn-block" href="/logout">logout</a>
+    </div>
 </div>
 
 </body>

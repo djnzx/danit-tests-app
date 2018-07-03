@@ -28,6 +28,7 @@ public class FreeMarker {
 
     public void render(String templateFile, Map<String, Object> data, HttpServletResponse resp) throws IOException {
         try {
+            resp.setCharacterEncoding(String.valueOf(StandardCharsets.UTF_8));
             config.getTemplate(templateFile).process(data, resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();

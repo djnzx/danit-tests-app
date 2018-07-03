@@ -4,7 +4,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 public class Session {
-    public final String cookieUID = "UID";
+    public static final String cookieUID = "UID";
     private final Cookies cookies;
     private final int howLongLoggedIn = 60*60*24;
 

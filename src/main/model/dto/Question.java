@@ -38,6 +38,23 @@ public class Question extends AbstractEntity {
         return text;
     }
 
+    public String textHtml() {
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            switch (c) {
+                case '\n' : sb.append("<br>");
+                    break;
+                case '`' :  sb.append(first ? "<pre>" : "</pre>");
+                    first = ! first;
+                    break;
+                default   : sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
     public Question setText(String text) {
         this.text = text;
         return this;
@@ -54,6 +71,6 @@ public class Question extends AbstractEntity {
 
     @Override
     public String toString() {
-        return isEmpty() ? "Question:[EMPTY]" : String.format("Question:[id:%d, number:%s, text:%s, date:%s]",id,number,text,date.toString());
+        return isEmpty() ? "Question:[EMPTY]" : String.format("Question:[id:%d, number:%s, text:%s, header:%s, date:%s]",id,number,text,header,date.toString());
     }
 }
