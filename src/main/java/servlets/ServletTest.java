@@ -46,17 +46,17 @@ public class ServletTest extends HttpServlet {
         final String PAUSE = "pause";
         final String SKIP = "skip";
 
-        Params p = new Params(req);
+        final Params p = new Params(req);
         log.info(p.toString());
 
-        Session s = new Session(req);
-        HashMap<String, Object> data = new HashMap<>();
-        User user = process.user(s.whoLogged());
+        final int loggedUserId = new Session(req).whoLogged();
+        final HashMap<String, Object> data = new HashMap<>();
+        User user = process.user(loggedUserId);
         Group group = process.group(user.getGroupId());
         data.put("user", user);
         data.put("group", group);
 
-        Process byStudent____ = process.getByStudent(s.whoLogged());
+        Process byStudent____ = process.getByStudent(loggedUserId);
 
         if (p.containsAll(f_aw, f_qu)) {
             String answer = p.get(f_aw);
