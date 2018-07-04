@@ -28,4 +28,10 @@ public class MessageFormattedTest {
         Message m = new MessageFormatted("%s : %s", "Hello", "World");
         assertEquals("Hello : World", m.get());
     }
+
+    @Test
+    public void test05() {
+        Message m = new MessageFormatted("%s : %s", "Hello", "World");
+        assertEquals("Hello : World", m.toString());
+    }
 }
