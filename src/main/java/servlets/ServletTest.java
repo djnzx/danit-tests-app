@@ -22,7 +22,7 @@ public class ServletTest extends HttpServlet {
     private final WholeProcess process;
     private final FreeMarker template;
 
-    static Logger log = LoggerFactory.getLogger(ServletTest.class);
+    private static Logger log = LoggerFactory.getLogger(ServletTest.class);
 
     public ServletTest(WholeProcess process, FreeMarker template) {
         this.process = process;
@@ -30,7 +30,7 @@ public class ServletTest extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // first entrance
         User user = process.user(new Session(req).whoLogged());
         HashMap<String, Object> data = new HashMap<>();
@@ -40,7 +40,7 @@ public class ServletTest extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         final String f_aw = "answer";
         final String f_qu = "question";
         final String PAUSE = "pause";
@@ -51,12 +51,13 @@ public class ServletTest extends HttpServlet {
 
         final int loggedUserId = new Session(req).whoLogged();
         final HashMap<String, Object> data = new HashMap<>();
-        User user = process.user(loggedUserId);
-        Group group = process.group(user.getGroupId());
+        final User user = process.user(loggedUserId);
+        final Group group = process.group(user.getGroupId());
+
         data.put("user", user);
         data.put("group", group);
 
-        Process byStudent____ = process.getByStudent(loggedUserId);
+        final Process byStudent____ = process.getByStudent(loggedUserId);
 
         if (p.containsAll(f_aw, f_qu)) {
             String answer = p.get(f_aw);
