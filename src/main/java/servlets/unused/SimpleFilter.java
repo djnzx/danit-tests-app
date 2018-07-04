@@ -1,4 +1,4 @@
-package servlets;
+package servlets.unused;
 
 import javax.servlet.*;
 import java.io.IOException;

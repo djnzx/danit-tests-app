@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import params.Params;
 import utils.FreeMarker;
-
+import utils.MessageFormatted;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,11 +58,11 @@ public class ServletRegister extends HttpServlet {
                 User store = dao.store(new User(p.get(f_nm), p.get(f_lg), new CodeEncode().encrypt(p.get(f_p1)), p.get(f_gr)));
                 template.render("register-ok.html", data, resp);
             } else {
-                data.put("message", new MessageError("User already registered, please recall your password or register with another e-mail"));
+                data.put("message", new MessageFormatted("User already registered, please recall your password or register with another e-mail"));
                 template.render("register-err.html", data, resp);
             }
         } else {
-            data.put("message", new MessageError("password mismatch"));
+            data.put("message", new MessageFormatted("password mismatch"));
             template.render("register-err.html", data, resp);
         }
     }

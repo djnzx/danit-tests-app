@@ -37,10 +37,14 @@ public class DAOPgUser implements DAO<User> {
     }
 
     public List<User> getByLogin(String name) {
+        return getByLogin(name, false);
+    }
+
+    public List<User> getByLogin(String name, boolean strict) {
         try {
             return new JdbcSession(source)
                     .sql("SELECT * FROM users WHERE UPPER(u_login) LIKE UPPER(?)")
-                    .set("%"+name+"%")
+                    .set(strict ? name : "%"+name+"%")
                     .select(new OutcomeUserList());
         } catch (SQLException e) {
             e.printStackTrace();

@@ -10,9 +10,11 @@ import java.util.HashMap;
 public class WholeProcess {
     private final HashMap<Integer, Process> storage = new HashMap<>();
     private final Persistence persistence;
+    private final Authenticator authentifier;
 
     public WholeProcess(Persistence persistence) {
         this.persistence = persistence;
+        this.authentifier = new Authenticator(persistence);
     }
 
     public Process getByStudent(int id) {
@@ -40,5 +42,9 @@ public class WholeProcess {
     @Override
     public String toString() {
         return String.format("Users in memory:%s", storage.keySet());
+    }
+
+    public Authenticator.AuthResult auth(String login, String passwd) {
+        return this.authentifier.auth(login, passwd);
     }
 }

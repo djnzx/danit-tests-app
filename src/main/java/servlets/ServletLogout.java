@@ -26,10 +26,11 @@ public class ServletLogout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Cookies cookies = new CookiesEncrypted(req);
-        log.info("WholeProcess was:"+wholeProcess.toString());
+        log.info("WholeProcess was:" + wholeProcess.toString());
         wholeProcess.userLogout(cookies.getValue(Session.cookieUID));
-        log.info("WholeProcess  is:"+wholeProcess.toString());
-        cookies.dieAll().spill(resp);
+        log.info("WholeProcess  is:" + wholeProcess.toString());
+        cookies.die(Session.cookieUID);
+        cookies.spill(resp);
         template.render("logout-ok.html", resp);
     }
 }

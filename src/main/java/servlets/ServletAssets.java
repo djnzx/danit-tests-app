@@ -12,11 +12,11 @@ import java.nio.file.Paths;
 
 public class ServletAssets extends HttpServlet {
     static Logger log = LoggerFactory.getLogger(ServletAssets.class);
+    private final String ASSETS_ROOT = "./assets";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         log.debug(req.getPathInfo());
-        resp.getOutputStream().write(Files.readAllBytes(
-                Paths.get("./assets", req.getPathInfo())));
+        Files.copy(Paths.get(ASSETS_ROOT, req.getPathInfo()), resp.getOutputStream());
     }
 }

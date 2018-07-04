@@ -37,5 +37,7 @@ public class Session {
         return cookies;
     }
 
-
+    public Cookies logout() {
+        return cookies.dieAll();
+    }
 }
