@@ -81,7 +81,7 @@ public class DAOPgQuestion implements DAO<Question> {
 
     @Override
     public List<Question> all() {
-        return null;
+        return new ArrayList<>();
     }
 
     public List<Integer> availableByUser(int id) {

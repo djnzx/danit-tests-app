@@ -8,6 +8,7 @@ import model.outcome.OutcomeProcess;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOPgProcess implements DAO<Process> {
@@ -80,6 +81,6 @@ public class DAOPgProcess implements DAO<Process> {
 
     @Override
     public List<Process> all() {
-        return null;
+        return new ArrayList<>();
     }
 }

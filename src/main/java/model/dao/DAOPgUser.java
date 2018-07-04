@@ -100,7 +100,7 @@ public class DAOPgUser implements DAO<User> {
 
     @Override
     public List<User> all() {
-        return null;
+        return new ArrayList<>();
     }
 
     public static void main(String[] args) throws SQLException {

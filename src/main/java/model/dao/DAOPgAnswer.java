@@ -76,7 +76,7 @@ public class DAOPgAnswer implements DAO<Answer>{
 
     @Override
     public List<Answer> all() {
-        return null;
+        return new ArrayList<>();
     }
 
     public List<Answer> getAllByQuestion(int id) {

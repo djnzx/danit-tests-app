@@ -2,6 +2,7 @@ package core.stat;
 
 import core.OneQuestion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StatisticsPersonalized implements Statistics {
@@ -23,11 +24,11 @@ public class StatisticsPersonalized implements Statistics {
 
     @Override
     public List<OneQuestion> doneItems() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public List<OneQuestion> leftItems() {
-        return null;
+        return new ArrayList<>();
     }
 }
