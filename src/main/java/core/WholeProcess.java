@@ -4,17 +4,16 @@ import logic.Ent;
 import logic.Persistence;
 import model.dto.Group;
 import model.dto.User;
-
 import java.util.HashMap;
 
 public class WholeProcess {
     private final HashMap<Integer, Process> storage = new HashMap<>();
     private final Persistence persistence;
-    private final Authenticator authentifier;
+    private final Authenticator authenticator;
 
     public WholeProcess(Persistence persistence) {
         this.persistence = persistence;
-        this.authentifier = new Authenticator(persistence);
+        this.authenticator = new Authenticator(persistence);
     }
 
     public Process getByStudent(int id) {
@@ -22,9 +21,6 @@ public class WholeProcess {
             storage.put(id, new ProcessPersonalized(persistence, id));
         }
         return storage.get(id);
-    }
-    public void userLogout(CharSequence id) {
-        userLogout(Integer.parseInt(id.toString()));
     }
 
     public void userLogout(int id) {
@@ -44,7 +40,7 @@ public class WholeProcess {
         return String.format("Users in memory:%s", storage.keySet());
     }
 
-    public Authenticator.AuthResult auth(String login, String passwd) {
-        return this.authentifier.auth(login, passwd);
+    public Authenticator.Result auth(String login, String passwd) {
+        return this.authenticator.auth(login, passwd);
     }
 }

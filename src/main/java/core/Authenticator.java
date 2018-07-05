@@ -16,12 +16,12 @@ public class Authenticator {
         this.persistence = persistence;
     }
 
-    public class AuthResult {
+    public class Result {
         private final boolean ok;
         private final String message;
         private final User user;
 
-        AuthResult(boolean ok, String message, User user) {
+        Result(boolean ok, String message, User user) {
             this.ok = ok;
             this.message = message;
             this.user = user;
@@ -40,7 +40,7 @@ public class Authenticator {
         }
     }
 
-    public AuthResult auth(String login, String pwd) {
+    public Result auth(String login, String pwd) {
         DAOPgUser dao = persistence.get(Ent.User).dao();
         List<User> byLogin = dao.getByLogin(login, true);
         boolean success = false;
@@ -59,6 +59,6 @@ public class Authenticator {
                 success = true;
             }
         }
-        return new AuthResult(success, message, user);
+        return new Result(success, message, user);
     }
 }

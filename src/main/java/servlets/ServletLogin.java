@@ -37,9 +37,11 @@ public class ServletLogin extends HttpServlet {
         log.info(p.toString());
 
         HashMap<String, Object> data = new HashMap<>();
-        Authenticator.AuthResult result = wholeProcess.auth(p.get(f_lg), p.get(f_pw));
+        Authenticator.Result result = wholeProcess.auth(p.get(f_lg), p.get(f_pw));
         if (result.isOk()) {
-            new Session().loginUser(result.user().getId()).spill(resp);
+            new Session()
+                    .loginUser(result.user().getId())
+                    .save(resp);
             data.put("user", result.user());
             template.render("login-ok.html", data, resp);
         } else {

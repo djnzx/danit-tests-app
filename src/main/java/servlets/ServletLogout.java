@@ -1,7 +1,5 @@
 package servlets;
 
-import cookies.Cookies;
-import cookies.CookiesEncrypted;
 import cookies.Session;
 import core.WholeProcess;
 import org.slf4j.Logger;
@@ -25,12 +23,11 @@ public class ServletLogout extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Cookies cookies = new CookiesEncrypted(req);
+        Session s = new Session(req);
         log.info("WholeProcess was:" + wholeProcess.toString());
-        wholeProcess.userLogout(cookies.getValue(Session.cookieUID));
+        wholeProcess.userLogout(s.whoLogged());
         log.info("WholeProcess  is:" + wholeProcess.toString());
-        cookies.die(Session.cookieUID);
-        cookies.spill(resp);
+        s.logout().save(resp);
         template.render("logout-ok.html", resp);
     }
 }

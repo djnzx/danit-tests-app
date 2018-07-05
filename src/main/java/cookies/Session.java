@@ -2,11 +2,12 @@ package cookies;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class Session {
-    public static final String cookieUID = "UID";
+    private static final String cookieUID = "UID";
     private final Cookies cookies;
-    private final int howLongLoggedIn = 60*60*24;
+    private final int HOW_LONG = 60*60*24;
 
     public Session(ServletRequest req) {
         this((HttpServletRequest)req);
@@ -32,12 +33,17 @@ public class Session {
         return Integer.parseInt(cookies.getValue(cookieUID).toString());
     }
 
-    public Cookies loginUser(int id) {
-        cookies.add(new CookieTimed(cookieUID, String.valueOf(id), howLongLoggedIn));
-        return cookies;
+    public Session loginUser(int id) {
+        cookies.add(new CookieTimed(cookieUID, String.valueOf(id), HOW_LONG));
+        return this;
     }
 
-    public Cookies logout() {
-        return cookies.dieAll();
+    public Session logout() {
+        cookies.die(Session.cookieUID);
+        return this;
+    }
+
+    public void save(HttpServletResponse resp) {
+        cookies.spill(resp);
     }
 }
