@@ -1,17 +1,13 @@
 package servlets;
 
 import cookies.Session;
-import core.OneQuestion;
 import core.Process;
 import core.WholeProcess;
-import model.dto.Group;
-import model.dto.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import params.Params;
 import utils.FreeMarker;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +18,11 @@ public class ServletTest extends HttpServlet {
     private final WholeProcess process;
     private final FreeMarker template;
 
+    private final String f_aw = "answer";
+    private final String f_qu = "question";
+    private final String PAUSE = "pause";
+    private final String SKIP = "skip";
+
     private static Logger log = LoggerFactory.getLogger(ServletTest.class);
 
     public ServletTest(WholeProcess process, FreeMarker template) {
@@ -31,61 +32,36 @@ public class ServletTest extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        // first entrance
-        User user = process.user(new Session(req).whoLogged());
-        HashMap<String, Object> data = new HashMap<>();
-        data.put("user", user);
-        data.put("group", process.group(user.getGroupId()));
-        template.render("test-first.html", data, resp);
+        doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        final String f_aw = "answer";
-        final String f_qu = "question";
-        final String PAUSE = "pause";
-        final String SKIP = "skip";
-
         final Params p = new Params(req);
         log.info(p.toString());
 
-        final int loggedUserId = new Session(req).whoLogged();
+        final Process personal = process.getByStudent(new Session(req).whoLogged());
         final HashMap<String, Object> data = new HashMap<>();
-        final User user = process.user(loggedUserId);
-        final Group group = process.group(user.getGroupId());
-
-        data.put("user", user);
-        data.put("group", group);
-
-        final Process byStudent____ = process.getByStudent(loggedUserId);
+        data.put("user", personal.user());
+        data.put("group", personal.group());
 
         if (p.containsAll(f_aw, f_qu)) {
-            String answer = p.get(f_aw);
-            if (answer.equalsIgnoreCase(PAUSE)) {
+            final String qu=p.get(f_qu);
+            final String aw=p.get(f_aw);
+            if (PAUSE.equals(aw)) {
                 template.render("test-pause.html", data, resp);
-            } else {
-                if (answer.equalsIgnoreCase(SKIP)) {
-                    byStudent____.skip(p.get(f_qu));
-                } else {
-                    byStudent____.store(p.get(f_qu), p.get(f_aw));
-                }
-                nextQuestion(user, byStudent____, data, resp);
+                return;
             }
-        } else {
-            nextQuestion(user, byStudent____, data, resp);
+            if (SKIP.equals(aw)) {
+                personal.skip(qu);
+            } else {
+                personal.store(qu, f_aw);
+            }
         }
-    }
 
-    private void nextQuestion(User user, Process process, HashMap<String, Object> data, HttpServletResponse resp) throws IOException {
-        if (process.hasNext()) {
-            OneQuestion questionWithAnswers = process.next();
-            log.trace(questionWithAnswers.toString());
-            log.trace(questionWithAnswers.question().textHtml());
-            data.put("qanda", questionWithAnswers);
-            template.render("test-next.html", data, resp);
-        } else {
-            log.info(String.format("User %d:%s has finished test", user.getId(), user.getName()));
-            template.render("test-done.html", data, resp);
+        if (personal.hasNext()) {
+            data.put("qanda", personal.next());
         }
+        template.render("test.html", data, resp);
     }
 }

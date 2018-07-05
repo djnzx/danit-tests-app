@@ -1,9 +1,20 @@
 package core;
 
 import core.stat.Statistics;
+import model.dto.Group;
+import model.dto.User;
 
 public interface Process {
+    String SKIP = "skip";
     Statistics statistics();
+
+    default void put(String question, String answer) {
+        if (answer.equals(SKIP)) {
+            skip(question);
+        } else {
+            store(question, answer);
+        }
+    }
 
     default void skip(String s) {
         skip(Integer.parseInt(s));
@@ -17,4 +28,6 @@ public interface Process {
 
     OneQuestion next();
     boolean hasNext();
+    User user();
+    Group group();
 }

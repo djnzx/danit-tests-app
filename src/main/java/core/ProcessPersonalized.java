@@ -6,6 +6,8 @@ import logic.Ent;
 import logic.Persistence;
 import model.dao.DAOPgProcess;
 import model.dao.DAOPgQuestion;
+import model.dto.Group;
+import model.dto.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Iterator;
@@ -15,6 +17,8 @@ public class ProcessPersonalized implements Process {
     private final Persistence persistence;
     private final int userId;
     private final Iterator<Integer> it;
+    private final User user;
+    private final Group group;
 
     static Logger log = LoggerFactory.getLogger(ProcessPersonalized.class);
 
@@ -25,6 +29,8 @@ public class ProcessPersonalized implements Process {
         List<Integer> available = dao.availableByUser(id);
         log.info(available.toString());
         this.it = available.iterator();
+        this.user = (User) persistence.get(Ent.User).dao().get(id);
+        this.group = (Group) persistence.get(Ent.Group).dao().get(user.getGroupId());
     }
 
     @Override
@@ -52,5 +58,13 @@ public class ProcessPersonalized implements Process {
     @Override
     public boolean hasNext() {
         return it.hasNext();
+    }
+
+    public User user() {
+        return user;
+    }
+
+    public Group group() {
+        return group;
     }
 }
