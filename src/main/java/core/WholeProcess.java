@@ -2,9 +2,11 @@ package core;
 
 import logic.Ent;
 import logic.Persistence;
+import model.dao.DAOPgGroup;
 import model.dto.Group;
 import model.dto.User;
 import java.util.HashMap;
+import java.util.List;
 
 public class WholeProcess {
     private final HashMap<Integer, Process> storage = new HashMap<>();
@@ -35,6 +37,11 @@ public class WholeProcess {
         return (Group) persistence.get(Ent.Group).dao().get(id);
     }
 
+    public List<Group> groups() {
+        DAOPgGroup dao = persistence.get(Ent.Group).dao();
+        return dao.all();
+    }
+
     @Override
     public String toString() {
         return String.format("Users in memory:%s", storage.keySet());
@@ -42,5 +49,9 @@ public class WholeProcess {
 
     public Authenticator.Result auth(String login, String passwd) {
         return this.authenticator.auth(login, passwd);
+    }
+
+    public Authenticator.Result register(String login, String pwd1, String pwd2, String name, String group) {
+        return authenticator.register(login, pwd1, pwd2, name, Integer.parseInt(group));
     }
 }

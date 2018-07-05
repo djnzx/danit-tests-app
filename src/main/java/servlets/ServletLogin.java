@@ -35,18 +35,13 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Params p = new Params(req);
         log.info(p.toString());
-
-        HashMap<String, Object> data = new HashMap<>();
-        Authenticator.Result result = wholeProcess.auth(p.get(f_lg), p.get(f_pw));
-        if (result.isOk()) {
-            new Session()
-                    .loginUser(result.user().getId())
-                    .save(resp);
-            data.put("user", result.user());
-            template.render("login-ok.html", data, resp);
-        } else {
-            data.put("message", result.message());
-            template.render("login-err.html", data, resp);
+        Authenticator.Result r = wholeProcess.auth(p.get(f_lg), p.get(f_pw));
+        if (r.success()) {
+            new Session().loginUser(r.user().getId()).save(resp);
         }
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("user", r.user());
+        data.put("message", r.message());
+        template.render(r.success() ? "login-ok.html" : "login-err.html", data, resp);
     }
 }

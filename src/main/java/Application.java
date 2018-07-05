@@ -20,14 +20,13 @@ import java.util.EnumSet;
 public class Application {
     public static void main(String[] args) throws Exception {
         FreeMarker template = new FreeMarker("./templates");
-        Persistence persistence = new Persistence();
-        WholeProcess wholeProcess = new WholeProcess(persistence);
+        WholeProcess wholeProcess = new WholeProcess(new Persistence());
         new Server(8080) {{
             setHandler(new ServletContextHandler(){{
                 addServlet(new ServletHolder(new ServletAssets()),"/assets/*");
                 addServlet(new ServletHolder(new ServletLogin(wholeProcess, template)),"/login");
                 addServlet(new ServletHolder(new ServletLogout(wholeProcess, template)),"/logout");
-                addServlet(new ServletHolder(new ServletRegister(persistence, template)),"/register");
+                addServlet(new ServletHolder(new ServletRegister(wholeProcess, template)),"/register");
                 addServlet(new ServletHolder(new ServletTest(wholeProcess, template)),"/test");
                 addServlet(new ServletHolder(new ServletRedirectTo("/login")),"/*");
                 //addServlet(new ServletHolder(new ServletMenu(template)),"/*");

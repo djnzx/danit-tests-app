@@ -6,7 +6,6 @@ import logic.Persistence;
 import model.dao.DAOPgUser;
 import model.dto.User;
 import utils.MessageFormatted;
-
 import java.util.List;
 
 public class Authenticator {
@@ -27,7 +26,7 @@ public class Authenticator {
             this.user = user;
         }
 
-        public boolean isOk() {
+        public boolean success() {
             return this.ok;
         }
 
@@ -57,6 +56,26 @@ public class Authenticator {
                 message = "Entered password don't match, try again";
             } else {
                 success = true;
+            }
+        }
+        return new Result(success, message, user);
+    }
+
+    public Result register(String login, String pwd1, String pwd2, String name, int group) {
+        boolean success = false;
+        String message = "";
+        User user = new User();
+
+        if (!pwd1.equals(pwd2)) {
+            message = "Password mismatch";
+        } else {
+            DAOPgUser dao = persistence.get(Ent.User).dao();
+            int amount = dao.getByLogin(login, true).size();
+            if (amount == 0) {
+                user = dao.store(new User(name, login, new CodeEncode().encrypt(pwd1), group));
+                success = true;
+            } else {
+                message = "User already registered, please recall your password or register with another e-mail";
             }
         }
         return new Result(success, message, user);

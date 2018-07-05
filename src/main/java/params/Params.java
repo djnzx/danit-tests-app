@@ -26,11 +26,15 @@ public class Params {
 
     public boolean containsValue(String key) {
         String[] ss = params.get(key);
-        return (ss.length>0) && (!"".equals(ss[0]));
+        return (ss.length>0) && (!ss[0].isEmpty());
     }
 
     public boolean containsAll(String... keys) {
-        return Arrays.stream(keys).map(s -> containsKey(s) && containsValue(s)).reduce(true, (a, b) -> a && b);
+        boolean result = true;
+        for (String s : keys) {
+            result = result && containsKey(s) && containsValue(s);
+        }
+        return result;
     }
 
     public String get(String key) {
