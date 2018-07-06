@@ -6,12 +6,7 @@ import logic.Persistence;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import servlets.ServletAssets;
-import servlets.ServletLogin;
-import servlets.ServletLogout;
-import servlets.ServletRegister;
-import servlets.ServletRedirectTo;
-import servlets.ServletTest;
+import servlets.*;
 import utils.FreeMarker;
 
 import javax.servlet.DispatcherType;
@@ -28,6 +23,7 @@ public class Application {
                 addServlet(new ServletHolder(new ServletLogout(wholeProcess, template)),"/logout");
                 addServlet(new ServletHolder(new ServletRegister(wholeProcess, template)),"/register");
                 addServlet(new ServletHolder(new ServletTest(wholeProcess, template)),"/test");
+                addServlet(new ServletHolder(new ServletStat(wholeProcess, template)),"/stat");
                 addServlet(new ServletHolder(new ServletRedirectTo("/login")),"/*");
                 //addServlet(new ServletHolder(new ServletMenu(template)),"/*");
                 addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));

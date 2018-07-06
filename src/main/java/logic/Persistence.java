@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class Persistence {
     private final PgDatabase base = new PgDatabase();
     private final HashMap<Ent, InMemory<?>> storage = new HashMap<>();
+    private final DAOStatistics statistics = new DAOStatistics(base);
 
     public Persistence() {
         storage.put(Ent.User, new InMemory<User>(()->new DAOPgUser(base)));
@@ -22,6 +23,10 @@ public class Persistence {
     @SuppressWarnings("unchecked")
     public <T extends InMemory<? extends AbstractEntity>> T get(Ent ent) {
         return (T)storage.get(ent);
+    }
+
+    public DAOStatistics statDAO() {
+        return statistics;
     }
 
     public static void main(String[] args) {

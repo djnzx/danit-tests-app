@@ -3,6 +3,7 @@ package core;
 import logic.Ent;
 import logic.Persistence;
 import model.dao.DAOPgGroup;
+import model.dao.DAOStatistics;
 import model.dto.Group;
 import model.dto.User;
 import java.util.HashMap;
@@ -53,5 +54,9 @@ public class WholeProcess {
 
     public Authenticator.Result register(String login, String pwd1, String pwd2, String name, String group) {
         return authenticator.register(login, pwd1, pwd2, name, Integer.parseInt(group));
+    }
+
+    public DAOStatistics statDAO() {
+        return persistence.statDAO();
     }
 }

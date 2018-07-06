@@ -1,5 +1,5 @@
 package logic;
 
 public enum Ent {
-    User, Group, Question, Answer, Process
+    User, Group, Question, Answer, Process;
 }
