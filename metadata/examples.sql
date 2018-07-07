@@ -36,6 +36,8 @@ FROM users WHERE u_id IN (SELECT DISTINCT p_user FROM process)
 SELECT u_id, u_name FROM users WHERE u_id NOT IN (SELECT DISTINCT p_user FROM process)
 WITH u AS (SELECT * from users), g AS (SELECT * from "group") SELECT * FROM u
 
+//
+
 WITH
     stat_skipped AS (SELECT p_user, count(*) cnt_skipped from process WHERE p_answer=0 group by p_user),
     stat_answered AS (SELECT p_user, count(*) cnt_answered from process WHERE p_answer>0 group by p_user)
@@ -46,3 +48,20 @@ FROM users
   JOIN stat_skipped on stat_skipped.p_user=u_id
   RIGHT OUTER JOIN "group" on g_id=u_group
 
+//
+
+WITH
+    stat_skipped AS (SELECT p_user, count(*) cnt_skipped from process WHERE p_answer=0 group by p_user),
+    stat_answered AS (SELECT p_user, count(*) cnt_answered from process WHERE p_answer>0 group by p_user)
+SELECT
+  g_name, u_id, u_name, cnt_answered,
+  cnt_skipped cnt_skipped_original,
+  CASE
+    WHEN cnt_skipped IS NULL THEN 'no'
+    WHEN cnt_skipped<10 THEN 'too small'
+        ELSE 'enough'
+  END cnt_skipped
+FROM users
+  JOIN stat_answered on stat_answered.p_user=u_id
+  JOIN stat_skipped on stat_skipped.p_user=u_id
+  RIGHT OUTER JOIN "group" on g_id=u_group
