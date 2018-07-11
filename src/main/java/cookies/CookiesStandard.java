@@ -29,12 +29,12 @@ public class CookiesStandard implements Cookies {
         this(req.getCookies());
     }
 
+    @SuppressWarnings({"PMD.ArrayIsStoredDirectly", "PMD.UseVarargs"})
     public CookiesStandard(final Cookie[] cookies) {
-        this.storage = new NullableArrayWrapper<>(cookies)
-                .get()
+        this.storage = new NullableWrapper<>(cookies).get()
                 .stream()
-                .collect(Collectors.toMap(Cookie::getName,
-                        (Function<Cookie, CookieTimed>) cookie -> new CookieTimed(cookie)
+                .collect(Collectors.toMap(Cookie::getName, Function.identity()
+                        //(Function<Cookie, CookieTimed>) cookie -> new CookieTimed(cookie)
                 ));
     }
 

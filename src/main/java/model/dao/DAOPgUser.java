@@ -15,16 +15,16 @@ import java.util.List;
 public class DAOPgUser implements DAO<User> {
     private final DataSource source;
 
-    public DAOPgUser(Source conn) {
+    public DAOPgUser(final Source conn) {
         this(conn.source());
     }
 
-    public DAOPgUser(DataSource src) {
+    public DAOPgUser(final DataSource src) {
         this.source = src;
     }
 
     @Override
-    public User get(int pk) {
+    public User get(final int pk) {
         try {
             return new JdbcSession(source)
                     .sql("SELECT * FROM users WHERE u_id=?")
@@ -36,11 +36,11 @@ public class DAOPgUser implements DAO<User> {
         return new User();
     }
 
-    public List<User> getByLogin(String name) {
+    public List<User> getByLogin(final String name) {
         return getByLogin(name, false);
     }
 
-    public List<User> getByLogin(String name, boolean strict) {
+    public List<User> getByLogin(final String name, boolean strict) {
         try {
             return new JdbcSession(source)
                     .sql("SELECT * FROM users WHERE UPPER(u_login) LIKE UPPER(?)")
@@ -53,7 +53,7 @@ public class DAOPgUser implements DAO<User> {
     }
 
     @Override
-    public User insert(User e) {
+    public User insert(final User e) {
         try {
             return new JdbcSession(source)
                     .sql("INSERT INTO users (u_name, u_login, u_passwd, u_group) VALUES (?, ?, ?, ?)")
@@ -69,7 +69,7 @@ public class DAOPgUser implements DAO<User> {
     }
 
     @Override
-    public User update(User e) {
+    public User update(final User e) {
         try {
             return new JdbcSession(source)
                     .sql("UPDATE users SET u_name=?, u_regdate=?, u_login=?, u_passwd=?, u_group=? WHERE u_id=?")
@@ -87,7 +87,7 @@ public class DAOPgUser implements DAO<User> {
     }
 
     @Override
-    public void delete(int pk) {
+    public void delete(final int pk) {
         try {
             new JdbcSession(source)
                     .sql("DELETE FROM users WHERE u_id=?")
@@ -101,12 +101,5 @@ public class DAOPgUser implements DAO<User> {
     @Override
     public List<User> all() {
         return new ArrayList<>();
-    }
-
-    public static void main(String[] args) throws SQLException {
-        DAOPgUser dao = new DAOPgUser(new PgDatabase());
-        dao.insert(new User("Sergo","serg33").setGroupId(6));
-        dao.delete(5);
-        dao.delete(6);
     }
 }

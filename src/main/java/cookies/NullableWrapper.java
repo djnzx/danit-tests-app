@@ -10,7 +10,7 @@ import java.util.function.Supplier;
  * and main goal of this class is avoid to handle any null in production
  * @param <T>
  */
-public final class NullableArrayWrapper<T> {
+public final class NullableWrapper<T> {
 
     /**
      * variable to store original value
@@ -22,7 +22,7 @@ public final class NullableArrayWrapper<T> {
      * @param raw - typed array of source data
      */
     @SuppressWarnings("PMD.UseVarargs")
-    public NullableArrayWrapper(final T[] raw) {
+    public NullableWrapper(final T[] raw) {
         this.origin = raw == null ? null : raw.clone();
     }
 
@@ -43,4 +43,3 @@ public final class NullableArrayWrapper<T> {
         return (L) c;
     }
 }
-

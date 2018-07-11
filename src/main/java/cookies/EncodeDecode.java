@@ -13,20 +13,20 @@ import java.util.Base64;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-public final class CodeEncode {
+public final class EncodeDecode {
     private final static String CIPHER = "AES/CBC/PKCS5PADDING";
     private final Base64.Encoder encoder;
     private final Base64.Decoder decoder;
     private final IvParameterSpec iv;
     private final SecretKeySpec skeySpec;
 
-    public CodeEncode() {
+    public EncodeDecode() {
         this(Base64.getEncoder(), Base64.getDecoder(),
                 "RandomInitVector", // 16 bytes IV
                 "2017.DAN.IT2018.");
     }
 
-    public CodeEncode(final Base64.Encoder enc, final Base64.Decoder dec, final String initVector, final String key) {
+    public EncodeDecode(final Base64.Encoder enc, final Base64.Decoder dec, final String initVector, final String key) {
         this.encoder = enc;
         this.decoder = dec;
         this.iv = new IvParameterSpec(initVector.getBytes(UTF_8));
@@ -65,12 +65,12 @@ public final class CodeEncode {
         final Object o = new Object();
         try {
             synchronized (o) {
-                final Cipher cipher = Cipher.getInstance(CodeEncode.CIPHER);
+                final Cipher cipher = Cipher.getInstance(EncodeDecode.CIPHER);
                 cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
                 return code64(cipher.doFinal(code64(value).getBytes()));
             }
         } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException ex) {
-            throw new IllegalArgumentException("CodeEncode: can't encode", ex);
+            throw new IllegalArgumentException("EncodeDecode: can't encode", ex);
         }
     }
 
@@ -78,12 +78,12 @@ public final class CodeEncode {
         final Object o = new Object();
         try {
             synchronized (o) {
-                final Cipher cipher = Cipher.getInstance(CodeEncode.CIPHER);
+                final Cipher cipher = Cipher.getInstance(EncodeDecode.CIPHER);
                 cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
                 return decode64(new String(cipher.doFinal(decode64toBytes(encrypted))));
             }
         } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException ex) {
-            throw new IllegalArgumentException("CodeEncode: can't decode", ex);
+            throw new IllegalArgumentException("EncodeDecode: can't decode", ex);
         }
     }
 }

@@ -3,6 +3,8 @@ package utils;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -11,27 +13,37 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FreeMarker {
-    private final Configuration config = new Configuration(Configuration.VERSION_2_3_28);
+public final class FreeMarker {
+    /**
+     * logger instance
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(FreeMarker.class);
 
-    public FreeMarker(String path) throws IOException {
-        config.setDirectoryForTemplateLoading(new File(path));
-        config.setDefaultEncoding(String.valueOf(StandardCharsets.UTF_8));
-        config.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        config.setLogTemplateExceptions(false);
-        config.setWrapUncheckedExceptions(true);
+    /**
+     * Configuration Instance
+     */
+    private final Configuration config;
+
+    public FreeMarker(final String path) throws IOException {
+        this.config = new Configuration(Configuration.VERSION_2_3_28) {{
+            setDirectoryForTemplateLoading(new File(path));
+            setDefaultEncoding(String.valueOf(StandardCharsets.UTF_8));
+            setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+            setLogTemplateExceptions(false);
+            setWrapUncheckedExceptions(true);
+        }};
     }
 
-    public void render(String templateFile, HttpServletResponse resp) throws IOException {
+    public void render(final String templateFile, final HttpServletResponse resp) throws IOException {
         render(templateFile, new HashMap<>(), resp);
     }
 
-    public void render(String templateFile, Map<String, Object> data, HttpServletResponse resp) throws IOException {
+    public void render(final String templateFile, final Map<String, Object> data, final HttpServletResponse resp) throws IOException {
         try {
             resp.setCharacterEncoding(String.valueOf(StandardCharsets.UTF_8));
             config.getTemplate(templateFile).process(data, resp.getWriter());
         } catch (TemplateException e) {
-            e.printStackTrace();
+            LOG.info(e.getMessage());
         }
     }
 }

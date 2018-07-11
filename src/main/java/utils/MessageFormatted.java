@@ -1,23 +1,29 @@
 package utils;
 
 public class MessageFormatted implements Message {
-    private final String msg;
+    /**
+     * format
+     */
+    private final String format;
+    /**
+     * params
+     */
     private final Object[] params;
 
-    public MessageFormatted(String msg) {
+    public MessageFormatted(final String msg) {
         this(msg, new Object[0]);
     }
 
-    public MessageFormatted(String msg, Object... params) {
-        this.msg=msg;
-        this.params=params;
+    public MessageFormatted(final String msg, final Object... params) {
+        this.format = msg;
+        this.params = params;
     }
 
     @Override
     public String get() {
-        return params.length==0 ?
-                this.msg :
-                String.format(msg, params);
+        return params.length == 0 ?
+                this.format :
+                String.format(format, params);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package core;
 
-import cookies.CodeEncode;
+import cookies.EncodeDecode;
 import logic.Ent;
 import logic.Persistence;
 import model.dao.DAOPgUser;
@@ -52,7 +52,7 @@ public class Authenticator {
             message = new MessageFormatted("Looks like you entered only part of your email (%s) because too many matching records found in database", login).get();
         } else {
             user = byLogin.get(0);
-            if (!user.getPasswd().equals(new CodeEncode().encrypt(pwd))) {
+            if (!user.getPasswd().equals(new EncodeDecode().encrypt(pwd))) {
                 message = "Entered password don't match, try again";
             } else {
                 success = true;
@@ -72,7 +72,7 @@ public class Authenticator {
             DAOPgUser dao = persistence.get(Ent.User).dao();
             int amount = dao.getByLogin(login, true).size();
             if (amount == 0) {
-                user = dao.store(new User(name, login, new CodeEncode().encrypt(pwd1), group));
+                user = dao.store(new User(name, login, new EncodeDecode().encrypt(pwd1), group));
                 success = true;
             } else {
                 message = "User already registered, please recall your password or register with another e-mail";

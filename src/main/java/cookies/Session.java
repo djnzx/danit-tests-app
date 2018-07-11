@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Session {
-    private final String COOKIE_UID = "UID";
-    private final int HOW_LONG = 60*60*24;
+    private static final String COOKIE_UID = "UID";
+    private static final int HOW_LONG = 60 * 60 * 24;
     private final Cookies cookies;
 
     public Session(final ServletRequest req) {
@@ -26,15 +26,15 @@ public class Session {
     }
 
     public boolean isAnybodyLogged() {
-        return cookies.exists(COOKIE_UID);
+        return cookies.exists(Session.COOKIE_UID);
     }
 
     public int whoLogged() {
-        return Integer.parseInt(cookies.getValue(COOKIE_UID).toString());
+        return Integer.parseInt(cookies.getValue(Session.COOKIE_UID).toString());
     }
 
     public Session loginUser(final int id) {
-        cookies.add(new CookieTimed(COOKIE_UID, String.valueOf(id), HOW_LONG));
+        cookies.add(new CookieTimed(Session.COOKIE_UID, String.valueOf(id), Session.HOW_LONG));
         return this;
     }
 
@@ -45,7 +45,7 @@ public class Session {
      * @return this for chaining and ability to use .save() in the future
      */
     public Session logout() {
-        cookies.die(COOKIE_UID);
+        cookies.die(Session.COOKIE_UID);
         return this;
     }
 

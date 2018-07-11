@@ -2,6 +2,7 @@ package cookies;
 
 import javax.servlet.http.Cookie;
 
+@SuppressWarnings("PMD.OnlyOneConstructorShouldDoInitialization")
 public final class CookieTimed extends Cookie {
 
     @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
@@ -14,6 +15,7 @@ public final class CookieTimed extends Cookie {
         setVersion(c.getVersion());
     }
 
+    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public CookieTimed(final String name, final String value, final int age) {
         super(name, value);
         this.setMaxAge(age);

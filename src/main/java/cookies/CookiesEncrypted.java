@@ -18,7 +18,7 @@ public final class CookiesEncrypted implements Cookies {
     /**
      * coder instance to code/decode cookies
      */
-    private final CodeEncode coder = new CodeEncode();
+    private final EncodeDecode coder;
     /**
      * origin cookies
      */
@@ -34,6 +34,7 @@ public final class CookiesEncrypted implements Cookies {
 
     public CookiesEncrypted(final Cookies ck) {
         this.cookies = ck;
+        this.coder = new EncodeDecode();
     }
 
     @Override

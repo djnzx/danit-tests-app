@@ -14,11 +14,11 @@ public class Persistence {
     private final DAOStatistics statistics = new DAOStatistics(base);
 
     public Persistence() throws SQLException {
-        storage.put(Ent.User, new InMemory<User>(()->new DAOPgUser(base)));
-        storage.put(Ent.Group, new InMemory<Group>(()->new DAOPgGroup(base)));
-        storage.put(Ent.Question, new InMemory<Question>(()->new DAOPgQuestion(base)));
-        storage.put(Ent.Answer, new InMemory<Answer>(()->new DAOPgAnswer(base)));
-        storage.put(Ent.Process, new InMemory<Process>(()->new DAOPgProcess(base)));
+        storage.put(Ent.User, new InMemory<User>(() -> new DAOPgUser(base)));
+        storage.put(Ent.Group, new InMemory<Group>(() -> new DAOPgGroup(base)));
+        storage.put(Ent.Question, new InMemory<Question>(() -> new DAOPgQuestion(base)));
+        storage.put(Ent.Answer, new InMemory<Answer>(() -> new DAOPgAnswer(base)));
+        storage.put(Ent.Process, new InMemory<Process>(() -> new DAOPgProcess(base)));
     }
 
     @SuppressWarnings("unchecked")

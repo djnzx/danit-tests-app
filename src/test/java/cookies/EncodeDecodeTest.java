@@ -4,10 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class CodeEncodeTest {
+public class EncodeDecodeTest {
     @Test
     public void main00() {
-        CodeEncode cc = new CodeEncode();
+        EncodeDecode cc = new EncodeDecode();
 
         final String original = "!Sensitive_data#";
         //System.out.printf("Initial  :'%s'\n", s);

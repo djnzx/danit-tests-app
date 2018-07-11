@@ -12,29 +12,29 @@ public class User extends AbstractEntity {
     public User() {
     }
 
-    public User(String name, String login) {
-        this.name = name;
-        this.login = login;
+    public User(final String nm, final String lg) {
+        this.name = nm;
+        this.login = lg;
     }
 
-    public User(String name, String login, String passwd, String groupId) {
-        this(name, login, passwd, Integer.parseInt(groupId));
+    public User(final String nm, final String lg, final String pwd, final String gid) {
+        this(nm, lg, pwd, Integer.parseInt(gid));
     }
 
-    public User(String name, String login, String passwd, int groupId) {
-        this.name = name.trim();
-        this.login = login.trim();
-        this.passwd = passwd;
-        this.groupId = groupId;
+    public User(final String nm, final String lg, final String pwd, final int gid) {
+        this.name = nm.trim();
+        this.login = lg.trim();
+        this.passwd = pwd;
+        this.groupId = gid;
     }
 
-    public User(int id, String name, Timestamp date, String login, String passwd, int groupId) {
+    public User(final int id, final String nm, final Timestamp dt, final String lgn, final String pwd, final int gId) {
         this.id = id;
-        this.name = name;
-        this.date = date;
-        this.login = login;
-        this.passwd = passwd;
-        this.groupId = groupId;
+        this.name = nm;
+        this.date = dt;
+        this.login = lgn;
+        this.passwd = pwd;
+        this.groupId = gId;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class User extends AbstractEntity {
         return id;
     }
 
-    public User setId(int id) {
+    public User setId(final int id) {
         this.id = id;
         return this;
     }
@@ -51,8 +51,8 @@ public class User extends AbstractEntity {
         return name;
     }
 
-    public User setName(String name) {
-        this.name = name;
+    public User setName(final String nm) {
+        this.name = nm;
         return this;
     }
 
@@ -60,8 +60,8 @@ public class User extends AbstractEntity {
         return date;
     }
 
-    public User setDate(Timestamp date) {
-        this.date = date;
+    public User setDate(final Timestamp dt) {
+        this.date = dt;
         return this;
     }
 
@@ -69,8 +69,8 @@ public class User extends AbstractEntity {
         return login;
     }
 
-    public User setLogin(String login) {
-        this.login = login;
+    public User setLogin(final String lgn) {
+        this.login = lgn;
         return this;
     }
 
@@ -78,8 +78,8 @@ public class User extends AbstractEntity {
         return passwd;
     }
 
-    public User setPasswd(String passwd) {
-        this.passwd = passwd;
+    public User setPasswd(final String pwd) {
+        this.passwd = pwd;
         return this;
     }
 
@@ -87,13 +87,13 @@ public class User extends AbstractEntity {
         return groupId;
     }
 
-    public User setGroupId(int groupId) {
-        this.groupId = groupId;
+    public User setGroupId(final int gId) {
+        this.groupId = gId;
         return this;
     }
 
     @Override
     public String toString() {
-        return String.format("User:[id:%d, Name:%s, Login:%s, Passwd:%s, Group:%s]",id,name,login,passwd,groupId);
+        return String.format("User:[id:%d, Name:%s, Login:%s, Passwd:%s, Group:%s]", id, name, login, passwd, groupId);
     }
 }
