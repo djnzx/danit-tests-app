@@ -22,9 +22,14 @@ public class ServletRegister extends HttpServlet {
     private final FreeMarker template;
     static Logger log = LoggerFactory.getLogger(ServletRegister.class);
 
-    public ServletRegister(WholeProcess wholeProcess, FreeMarker template) {
-        this.wholeProcess = wholeProcess;
-        this.template = template;
+    /**
+     *
+     * @param wp
+     * @param tpl
+     */
+    public ServletRegister(final WholeProcess wp, final FreeMarker tpl) {
+        this.wholeProcess = wp;
+        this.template = tpl;
     }
 
     @Override

@@ -5,15 +5,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Session {
-    private static final String cookieUID = "UID";
+    private static final String COOKIE_UID = "UID";
     private final Cookies cookies;
     private final int HOW_LONG = 60*60*24;
 
-    public Session(ServletRequest req) {
+    public Session(final ServletRequest req) {
         this((HttpServletRequest)req);
     }
 
-    public Session(HttpServletRequest req) {
+    public Session(final HttpServletRequest req) {
         this(new CookiesEncrypted(req));
     }
 
@@ -21,29 +21,39 @@ public class Session {
         this(new CookiesEncrypted());
     }
 
-    public Session(Cookies cookies) {
-        this.cookies = cookies;
+    public Session(final Cookies ck) {
+        this.cookies = ck;
     }
 
     public boolean isAnybodyLogged() {
-        return cookies.exists(cookieUID);
+        return cookies.exists(COOKIE_UID);
     }
 
     public int whoLogged() {
-        return Integer.parseInt(cookies.getValue(cookieUID).toString());
+        return Integer.parseInt(cookies.getValue(COOKIE_UID).toString());
     }
 
-    public Session loginUser(int id) {
-        cookies.add(new CookieTimed(cookieUID, String.valueOf(id), HOW_LONG));
+    public Session loginUser(final int id) {
+        cookies.add(new CookieTimed(COOKIE_UID, String.valueOf(id), HOW_LONG));
         return this;
     }
 
+    /**
+     * logging out user by setting up MaxAge(0)
+     * inn order to make result, should be used with save(HttpServletResponse)
+     * for example: s.logout().save(resp);
+     * @return this for chaining and ability to use .save() in the future
+     */
     public Session logout() {
-        cookies.die(Session.cookieUID);
+        cookies.die(Session.COOKIE_UID);
         return this;
     }
 
-    public void save(HttpServletResponse resp) {
+    /**
+     * saves cookies to HttpServletResponse
+     * @param resp, where to cookies will be written
+     */
+    public void save(final HttpServletResponse resp) {
         cookies.spill(resp);
     }
 }

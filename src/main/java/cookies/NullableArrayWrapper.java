@@ -1,57 +1,46 @@
 package cookies;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.function.Supplier;
 
-public class NullableArrayWrapper<T> {
-    private final T[] raw;
+/**
+ * entity to store array of type T which is able to be null
+ * and main goal of this class is avoid to handle any null in production
+ * @param <T>
+ */
+public final class NullableArrayWrapper<T> {
 
-    public NullableArrayWrapper(T[] raw) {
-        this.raw=raw;
+    /**
+     * variable to store original value
+     */
+    private final T[] origin;
+
+    /**
+     * primary constructor which consumes any typed array
+     * @param raw - typed array of source data
+     */
+    @SuppressWarnings("PMD.UseVarargs")
+    public NullableArrayWrapper(final T[] raw) {
+        this.origin = raw.clone();
     }
 
+    /**
+     * @param <L> any connection which is convenient to use
+     * @return Collection where initial values stored
+     */
     public <L extends Collection<T>> L get() {
         return get(ArrayList::new);
     }
 
     @SuppressWarnings("unchecked")
-    public <L extends Collection<T>> L get(Supplier<? extends Collection<T>> supplier) {
-        Collection<T> c = supplier.get();
-        if (raw != null) {
-            c.addAll(Arrays.asList(raw));
+    public <L extends Collection<T>> L get(final Supplier<? extends Collection<T>> supplier) {
+        final Collection<T> c = supplier.get();
+        if (origin != null) {
+            c.addAll(Arrays.asList(origin));
         }
         return (L) c;
-    }
-
-    public <X extends Object> X ultimate(Supplier<X> supp) {
-        return supp.get();
-    }
-
-    public static void main(String[] args) {
-        Integer[] i1 = new Integer[]{1, 2, 3};
-        // Integer[] i000 = Arrays.stream({1,2,3,4}).boxed().toArray(Integer[]::new);
-        Collection<Integer>    integers10 = new NullableArrayWrapper<>(i1).get();
-        List<Integer>          integers11 = new NullableArrayWrapper<>(i1).get();
-        ArrayList<Integer>     integers12 = new NullableArrayWrapper<>(i1).get();
-        List<Integer>          integers14 = new NullableArrayWrapper<>(i1).get(ArrayList::new);
-        Collection<Integer>    integers15 = new NullableArrayWrapper<>(i1).get(LinkedList::new);
-        LinkedList<Integer>    integers16 = new NullableArrayWrapper<>(i1).get(LinkedList::new);
-        PriorityQueue<Integer> integers17 = new NullableArrayWrapper<>(i1).get(PriorityQueue::new);
-        System.out.println(integers10);
-        System.out.println(integers11);
-        System.out.println(integers12);
-        System.out.println(integers14);
-        System.out.println(integers15);
-        System.out.println(integers16);
-        System.out.println(integers17);
-
-        Integer[] i2 = null;
-        Collection<Integer> integers20 = new NullableArrayWrapper<>(i2).get();
-        List<Integer>       integers21 = new NullableArrayWrapper<>(i2).get();
-
-        System.out.println(integers20);
-        System.out.println(integers21);
-        String utimate = new NullableArrayWrapper<>(i1).ultimate(String::new);
     }
 }
 
