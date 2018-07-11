@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OutcomeGroupList implements Outcome<List<Group>> {
     @Override
-    public List<Group> handle(ResultSet r, Statement stmt) throws SQLException {
+    public List<Group> handle(final ResultSet r, final Statement stmt) throws SQLException {
         ArrayList<Group> ent = new ArrayList<>();
         while (r.next()) {
             ent.add(new Group(r.getInt("g_id"),r.getString("g_name")));

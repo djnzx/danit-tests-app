@@ -1,8 +1,7 @@
 package model.dao;
 
 import com.jcabi.jdbc.JdbcSession;
-import com.jcabi.jdbc.Utc;
-import model.DbConn;
+import model.Source;
 import model.dto.Process;
 import model.outcome.OutcomeProcess;
 
@@ -11,19 +10,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOPgProcess implements DAO<Process> {
+public final class DAOPgProcess implements DAO<Process> {
     private final DataSource source;
 
-    public DAOPgProcess(DbConn conn) {
+    public DAOPgProcess(final Source conn) {
         this(conn.source());
     }
 
-    public DAOPgProcess(DataSource src) {
+    public DAOPgProcess(final DataSource src) {
         this.source = src;
     }
 
     @Override
-    public Process get(int pk) {
+    public Process get(final int pk) {
         try {
             return new JdbcSession(source)
                     .sql("SELECT * FROM process WHERE p_id = ?")
@@ -36,7 +35,7 @@ public class DAOPgProcess implements DAO<Process> {
     }
 
     @Override
-    public Process insert(Process e) {
+    public Process insert(final Process e) {
         try {
             return new JdbcSession(source)
                     .sql("INSERT INTO process (p_user, p_question, p_answer) VALUES (?, ?, ?)")
@@ -51,7 +50,7 @@ public class DAOPgProcess implements DAO<Process> {
     }
 
     @Override
-    public Process update(Process e) {
+    public Process update(final Process e) {
         try {
             return new JdbcSession(source)
                     .sql("UPDATE process SET p_user = ?, p_date = ?, p_question = ?, p_answer = ? WHERE p_id = ?")
@@ -68,7 +67,7 @@ public class DAOPgProcess implements DAO<Process> {
     }
 
     @Override
-    public void delete(int pk) {
+    public void delete(final int pk) {
         try {
             new JdbcSession(source)
                     .sql("DELETE FROM process WHERE p_id = ?")

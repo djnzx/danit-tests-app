@@ -39,11 +39,13 @@ public class InMemory<T extends AbstractEntity> {
     }
 
     public static void main(String[] args) {
+/*
         InMemory ue = new InMemory<>(()-> new DAOPgUser(new PgDatabase()));
         User u1 = (User)ue.get(1);
         System.out.println(u1);
         System.out.println(ue.get(2));
         System.out.println(ue.get(3));
         ue.forEach((k, e) -> System.out.println(e));
+*/
     }
 }

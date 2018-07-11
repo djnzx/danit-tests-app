@@ -5,6 +5,7 @@ import model.dao.*;
 import model.dto.*;
 import model.dto.Process;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 public class Persistence {
@@ -12,7 +13,7 @@ public class Persistence {
     private final HashMap<Ent, InMemory<?>> storage = new HashMap<>();
     private final DAOStatistics statistics = new DAOStatistics(base);
 
-    public Persistence() {
+    public Persistence() throws SQLException {
         storage.put(Ent.User, new InMemory<User>(()->new DAOPgUser(base)));
         storage.put(Ent.Group, new InMemory<Group>(()->new DAOPgGroup(base)));
         storage.put(Ent.Question, new InMemory<Question>(()->new DAOPgQuestion(base)));
@@ -29,7 +30,7 @@ public class Persistence {
         return statistics;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Persistence p = new Persistence();
         InMemory<User> inmu = p.get(Ent.User);
         inmu.get(1);

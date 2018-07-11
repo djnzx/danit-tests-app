@@ -7,15 +7,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CookiesStandard implements Cookies {
-    static Logger log = LoggerFactory.getLogger(CookiesStandard.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CookiesStandard.class);
 
     private final Map<CharSequence, Cookie> storage;
 
@@ -24,7 +22,7 @@ public class CookiesStandard implements Cookies {
     }
 
     public CookiesStandard(final ServletRequest request) {
-        this((HttpServletRequest)request);
+        this((HttpServletRequest) request);
     }
 
     public CookiesStandard(final HttpServletRequest req) {
@@ -37,7 +35,6 @@ public class CookiesStandard implements Cookies {
                 .stream()
                 .collect(Collectors.toMap(Cookie::getName,
                         (Function<Cookie, CookieTimed>) cookie -> new CookieTimed(cookie)
-                //       Function.identity()
                 ));
     }
 
@@ -64,7 +61,7 @@ public class CookiesStandard implements Cookies {
     @Override
     public void remove(final CharSequence name) {
         if (storage.containsKey(name)) {
-            Cookie c = storage.get(name);
+            final Cookie c = storage.get(name);
             c.setMaxAge(0);
             storage.put(name, c);
         }
@@ -72,9 +69,9 @@ public class CookiesStandard implements Cookies {
 
     @Override
     public void spill(final HttpServletResponse response) {
-        log.trace("entering CookiesStandard spill");
+        LOG.trace("entering CookiesStandard spill");
         storage.forEach((name, cookie) -> response.addCookie(cookie));
-        log.trace("leaving CookiesStandard spill");
+        LOG.trace("leaving CookiesStandard spill");
     }
 
     @Override
@@ -83,15 +80,7 @@ public class CookiesStandard implements Cookies {
     }
 
     @Override
-    public void die(CharSequence name) {
+    public void die(final CharSequence name) {
         storage.get(name).setMaxAge(0);
-    }
-
-    public static void main(String[] args) {
-        Cookie[] cc = new Cookie[0];
-        CookiesStandard cookies = new CookiesStandard(cc);
-        if (cookies.exists("U_ID")) {
-
-        }
     }
 }

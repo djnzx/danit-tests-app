@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class OutcomeAnswer implements Outcome<Answer> {
     @Override
-    public Answer handle(ResultSet r, Statement stmt) throws SQLException {
+    public Answer handle(final ResultSet r, final Statement stmt) throws SQLException {
         Answer ent = new Answer();
         if (r.next()) {
             ent.setId(r.getInt("a_id"));

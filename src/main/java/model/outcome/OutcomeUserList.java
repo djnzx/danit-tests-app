@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OutcomeUserList implements Outcome<List<User>> {
     @Override
-    public List<User> handle(ResultSet r, Statement stmt) throws SQLException {
+    public List<User> handle(final ResultSet r, final Statement stmt) throws SQLException {
         List<User> ent = new ArrayList<>();
         while (r.next()) {
             ent.add(new User(

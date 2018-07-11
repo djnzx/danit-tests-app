@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Session {
-    private static final String COOKIE_UID = "UID";
-    private final Cookies cookies;
+    private final String COOKIE_UID = "UID";
     private final int HOW_LONG = 60*60*24;
+    private final Cookies cookies;
 
     public Session(final ServletRequest req) {
         this((HttpServletRequest)req);
@@ -45,7 +45,7 @@ public class Session {
      * @return this for chaining and ability to use .save() in the future
      */
     public Session logout() {
-        cookies.die(Session.COOKIE_UID);
+        cookies.die(COOKIE_UID);
         return this;
     }
 

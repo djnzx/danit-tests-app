@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OutcomeAnswerList implements Outcome<List<Answer>> {
     @Override
-    public List<Answer> handle(ResultSet r, Statement stmt) throws SQLException {
+    public List<Answer> handle(final ResultSet r, final Statement stmt) throws SQLException {
         ArrayList<Answer> ents = new ArrayList<>();
         while (r.next()) {
             ents.add(new Answer(

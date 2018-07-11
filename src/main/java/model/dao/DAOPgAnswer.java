@@ -1,7 +1,7 @@
 package model.dao;
 
 import com.jcabi.jdbc.JdbcSession;
-import model.DbConn;
+import model.Source;
 import model.dto.Answer;
 import model.outcome.OutcomeAnswer;
 import model.outcome.OutcomeAnswerList;
@@ -14,7 +14,7 @@ import java.util.List;
 public class DAOPgAnswer implements DAO<Answer>{
     private final DataSource source;
 
-    public DAOPgAnswer(DbConn conn) {
+    public DAOPgAnswer(Source conn) {
         this.source = conn.source();
     }
 

@@ -1,7 +1,7 @@
 package model.dao;
 
 import com.jcabi.jdbc.JdbcSession;
-import model.DbConn;
+import model.Source;
 import model.dto.Group;
 import model.outcome.OutcomeGroupList;
 import model.outcome.OutcomeGroup;
@@ -14,7 +14,7 @@ import java.util.List;
 public class DAOPgGroup implements DAO<Group> {
     private final DataSource source;
 
-    public DAOPgGroup(DbConn conn) {
+    public DAOPgGroup(Source conn) {
         this.source = conn.source();
     }
 

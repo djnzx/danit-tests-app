@@ -2,23 +2,20 @@ package model.dao;
 
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.ListOutcome;
-import com.jcabi.jdbc.Outcome;
 import com.jcabi.jdbc.Utc;
-import model.DbConn;
+import model.Source;
 import model.dto.Question;
 import model.outcome.OutcomeQuestion;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DAOPgQuestion implements DAO<Question> {
     private final DataSource source;
 
-    public DAOPgQuestion(DbConn conn) {
+    public DAOPgQuestion(Source conn) {
         this.source = conn.source();
     }
 

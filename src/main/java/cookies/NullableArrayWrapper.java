@@ -23,7 +23,7 @@ public final class NullableArrayWrapper<T> {
      */
     @SuppressWarnings("PMD.UseVarargs")
     public NullableArrayWrapper(final T[] raw) {
-        this.origin = raw.clone();
+        this.origin = raw == null ? null : raw.clone();
     }
 
     /**

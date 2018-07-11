@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class OutcomeProcess implements Outcome<Process> {
     @Override
-    public Process handle(ResultSet r, Statement statement) throws SQLException {
+    public Process handle(final ResultSet r, final Statement statement) throws SQLException {
         Process ent = new Process();
         if (r.next()) {
             ent.setId(r.getInt("p_id"));

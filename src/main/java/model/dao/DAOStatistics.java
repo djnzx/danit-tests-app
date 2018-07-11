@@ -2,7 +2,7 @@ package model.dao;
 
 import com.jcabi.jdbc.JdbcSession;
 import com.jcabi.jdbc.Outcome;
-import model.DbConn;
+import model.Source;
 import model.dto.AbstractEntity;
 import model.dto.Stat001;
 import javax.sql.DataSource;
@@ -15,7 +15,7 @@ import java.util.List;
 public class DAOStatistics extends AbstractEntity {
     private final DataSource source;
 
-    public DAOStatistics(DbConn conn) {
+    public DAOStatistics(Source conn) {
         this.source = conn.source();
     }
 

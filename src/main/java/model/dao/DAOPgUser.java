@@ -2,7 +2,7 @@ package model.dao;
 
 import com.jcabi.jdbc.JdbcSession;
 import model.PgDatabase;
-import model.DbConn;
+import model.Source;
 import model.dto.User;
 import model.outcome.OutcomeUser;
 import model.outcome.OutcomeUserList;
@@ -15,7 +15,7 @@ import java.util.List;
 public class DAOPgUser implements DAO<User> {
     private final DataSource source;
 
-    public DAOPgUser(DbConn conn) {
+    public DAOPgUser(Source conn) {
         this(conn.source());
     }
 

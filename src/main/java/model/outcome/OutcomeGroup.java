@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class OutcomeGroup implements Outcome<Group> {
     @Override
-    public Group handle(ResultSet r, Statement stmt) throws SQLException {
+    public Group handle(final ResultSet r, final Statement stmt) throws SQLException {
         Group ent = new Group();
         if (r.next()) {
             ent.setId(r.getInt("g_id"));
