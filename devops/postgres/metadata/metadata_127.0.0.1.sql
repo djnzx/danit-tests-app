@@ -16,14 +16,14 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -34,7 +34,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: account; Type: TABLE; Schema: public; Owner: postgres
+-- Name: account; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.account (
@@ -44,10 +44,8 @@ CREATE TABLE public.account (
 );
 
 
-ALTER TABLE public.account OWNER TO postgres;
-
 --
--- Name: account_a_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: account_a_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.account_a_id_seq
@@ -59,17 +57,15 @@ CREATE SEQUENCE public.account_a_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.account_a_id_seq OWNER TO postgres;
-
 --
--- Name: account_a_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: account_a_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.account_a_id_seq OWNED BY public.account.a_id;
 
 
 --
--- Name: address; Type: TABLE; Schema: public; Owner: postgres
+-- Name: address; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.address (
@@ -78,10 +74,8 @@ CREATE TABLE public.address (
 );
 
 
-ALTER TABLE public.address OWNER TO postgres;
-
 --
--- Name: address_ad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: address_ad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.address_ad_id_seq
@@ -93,17 +87,15 @@ CREATE SEQUENCE public.address_ad_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.address_ad_id_seq OWNER TO postgres;
-
 --
--- Name: address_ad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: address_ad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.address_ad_id_seq OWNED BY public.address.ad_id;
 
 
 --
--- Name: answer; Type: TABLE; Schema: public; Owner: postgres
+-- Name: answer; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.answer (
@@ -114,10 +106,8 @@ CREATE TABLE public.answer (
 );
 
 
-ALTER TABLE public.answer OWNER TO postgres;
-
 --
--- Name: answers_a_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: answers_a_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.answers_a_id_seq
@@ -128,17 +118,15 @@ CREATE SEQUENCE public.answers_a_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.answers_a_id_seq OWNER TO postgres;
-
 --
--- Name: answers_a_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: answers_a_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.answers_a_id_seq OWNED BY public.answer.a_id;
 
 
 --
--- Name: group; Type: TABLE; Schema: public; Owner: postgres
+-- Name: group; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public."group" (
@@ -147,10 +135,8 @@ CREATE TABLE public."group" (
 );
 
 
-ALTER TABLE public."group" OWNER TO postgres;
-
 --
--- Name: manymany; Type: TABLE; Schema: public; Owner: postgres
+-- Name: manymany; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.manymany (
@@ -160,10 +146,8 @@ CREATE TABLE public.manymany (
 );
 
 
-ALTER TABLE public.manymany OWNER TO postgres;
-
 --
--- Name: manymanay_mm_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: manymanay_mm_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.manymanay_mm_id_seq
@@ -175,17 +159,15 @@ CREATE SEQUENCE public.manymanay_mm_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.manymanay_mm_id_seq OWNER TO postgres;
-
 --
--- Name: manymanay_mm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: manymanay_mm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.manymanay_mm_id_seq OWNED BY public.manymany.mm_id;
 
 
 --
--- Name: one; Type: TABLE; Schema: public; Owner: postgres
+-- Name: one; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.one (
@@ -194,10 +176,8 @@ CREATE TABLE public.one (
 );
 
 
-ALTER TABLE public.one OWNER TO postgres;
-
 --
--- Name: process_p_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: process_p_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.process_p_id_seq
@@ -208,10 +188,8 @@ CREATE SEQUENCE public.process_p_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.process_p_id_seq OWNER TO postgres;
-
 --
--- Name: process; Type: TABLE; Schema: public; Owner: postgres
+-- Name: process; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.process (
@@ -223,10 +201,8 @@ CREATE TABLE public.process (
 );
 
 
-ALTER TABLE public.process OWNER TO postgres;
-
 --
--- Name: question; Type: TABLE; Schema: public; Owner: postgres
+-- Name: question; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.question (
@@ -238,10 +214,8 @@ CREATE TABLE public.question (
 );
 
 
-ALTER TABLE public.question OWNER TO postgres;
-
 --
--- Name: questions_q_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: questions_q_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.questions_q_id_seq
@@ -252,17 +226,15 @@ CREATE SEQUENCE public.questions_q_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.questions_q_id_seq OWNER TO postgres;
-
 --
--- Name: questions_q_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: questions_q_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.questions_q_id_seq OWNED BY public.question.q_id;
 
 
 --
--- Name: role; Type: TABLE; Schema: public; Owner: postgres
+-- Name: role; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.role (
@@ -271,10 +243,8 @@ CREATE TABLE public.role (
 );
 
 
-ALTER TABLE public.role OWNER TO postgres;
-
 --
--- Name: role_r_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: role_r_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.role_r_id_seq
@@ -285,17 +255,15 @@ CREATE SEQUENCE public.role_r_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.role_r_id_seq OWNER TO postgres;
-
 --
--- Name: role_r_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: role_r_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.role_r_id_seq OWNED BY public.role.r_id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.users (
@@ -313,10 +281,8 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
-
 --
--- Name: users_u_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: users_u_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.users_u_id_seq
@@ -327,66 +293,64 @@ CREATE SEQUENCE public.users_u_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_u_id_seq OWNER TO postgres;
-
 --
--- Name: users_u_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: users_u_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.users_u_id_seq OWNED BY public.users.u_id;
 
 
 --
--- Name: account a_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: account a_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.account ALTER COLUMN a_id SET DEFAULT nextval('public.account_a_id_seq'::regclass);
 
 
 --
--- Name: address ad_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: address ad_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.address ALTER COLUMN ad_id SET DEFAULT nextval('public.address_ad_id_seq'::regclass);
 
 
 --
--- Name: answer a_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: answer a_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.answer ALTER COLUMN a_id SET DEFAULT nextval('public.answers_a_id_seq'::regclass);
 
 
 --
--- Name: manymany mm_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: manymany mm_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.manymany ALTER COLUMN mm_id SET DEFAULT nextval('public.manymanay_mm_id_seq'::regclass);
 
 
 --
--- Name: question q_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: question q_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.question ALTER COLUMN q_id SET DEFAULT nextval('public.questions_q_id_seq'::regclass);
 
 
 --
--- Name: role r_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: role r_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.role ALTER COLUMN r_id SET DEFAULT nextval('public.role_r_id_seq'::regclass);
 
 
 --
--- Name: users u_id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: users u_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN u_id SET DEFAULT nextval('public.users_u_id_seq'::regclass);
 
 
 --
--- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.account
@@ -394,7 +358,7 @@ ALTER TABLE ONLY public.account
 
 
 --
--- Name: address address_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: address address_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.address
@@ -402,7 +366,7 @@ ALTER TABLE ONLY public.address
 
 
 --
--- Name: answer answers_a_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: answer answers_a_id_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.answer
@@ -410,7 +374,7 @@ ALTER TABLE ONLY public.answer
 
 
 --
--- Name: group groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: group groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public."group"
@@ -418,7 +382,7 @@ ALTER TABLE ONLY public."group"
 
 
 --
--- Name: manymany manymany_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: manymany manymany_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.manymany
@@ -426,7 +390,7 @@ ALTER TABLE ONLY public.manymany
 
 
 --
--- Name: process process_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: process process_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.process
@@ -434,7 +398,7 @@ ALTER TABLE ONLY public.process
 
 
 --
--- Name: question questions_q_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: question questions_q_id_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.question
@@ -442,7 +406,7 @@ ALTER TABLE ONLY public.question
 
 
 --
--- Name: role role_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: role role_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.role
@@ -450,7 +414,7 @@ ALTER TABLE ONLY public.role
 
 
 --
--- Name: users users_u_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users users_u_id_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -458,7 +422,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: manymany manymany_address_ad_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: manymany manymany_address_ad_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.manymany
@@ -466,7 +430,7 @@ ALTER TABLE ONLY public.manymany
 
 
 --
--- Name: manymany manymany_users_u_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: manymany manymany_users_u_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.manymany

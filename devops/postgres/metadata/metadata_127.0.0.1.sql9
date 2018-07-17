@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.0
+-- Dumped from database version 10.3
 -- Dumped by pg_dump version 10.3
 
 SET statement_timeout = 0;
@@ -32,6 +32,65 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: account; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.account (
+    a_id integer NOT NULL,
+    a_user integer,
+    a_number integer
+);
+
+
+--
+-- Name: account_a_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.account_a_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: account_a_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.account_a_id_seq OWNED BY public.account.a_id;
+
+
+--
+-- Name: address; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.address (
+    ad_id integer NOT NULL,
+    ad_name character varying(128)
+);
+
+
+--
+-- Name: address_ad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.address_ad_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: address_ad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.address_ad_id_seq OWNED BY public.address.ad_id;
+
 
 --
 -- Name: answer; Type: TABLE; Schema: public; Owner: -
@@ -71,6 +130,46 @@ ALTER SEQUENCE public.answers_a_id_seq OWNED BY public.answer.a_id;
 CREATE TABLE public."group" (
     g_id integer NOT NULL,
     g_name character varying(32)
+);
+
+
+--
+-- Name: manymany; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.manymany (
+    mm_id integer NOT NULL,
+    mm_user integer,
+    mm_addr integer
+);
+
+
+--
+-- Name: manymanay_mm_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.manymanay_mm_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: manymanay_mm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.manymanay_mm_id_seq OWNED BY public.manymany.mm_id;
+
+
+--
+-- Name: one; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.one (
+    o_id integer,
+    o_name character varying(10)
 );
 
 
@@ -171,7 +270,11 @@ CREATE TABLE public.users (
     u_login character varying(32),
     u_passwd character varying(256),
     u_group integer,
-    u_role integer DEFAULT 1
+    u_role integer DEFAULT 1,
+    u_e1 integer,
+    u_e2 integer,
+    u_e3 character varying(128),
+    u_p4 character varying(128)
 );
 
 
@@ -195,10 +298,31 @@ ALTER SEQUENCE public.users_u_id_seq OWNED BY public.users.u_id;
 
 
 --
+-- Name: account a_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.account ALTER COLUMN a_id SET DEFAULT nextval('public.account_a_id_seq'::regclass);
+
+
+--
+-- Name: address ad_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.address ALTER COLUMN ad_id SET DEFAULT nextval('public.address_ad_id_seq'::regclass);
+
+
+--
 -- Name: answer a_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.answer ALTER COLUMN a_id SET DEFAULT nextval('public.answers_a_id_seq'::regclass);
+
+
+--
+-- Name: manymany mm_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.manymany ALTER COLUMN mm_id SET DEFAULT nextval('public.manymanay_mm_id_seq'::regclass);
 
 
 --
@@ -223,6 +347,22 @@ ALTER TABLE ONLY public.users ALTER COLUMN u_id SET DEFAULT nextval('public.user
 
 
 --
+-- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.account
+    ADD CONSTRAINT account_pkey PRIMARY KEY (a_id);
+
+
+--
+-- Name: address address_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.address
+    ADD CONSTRAINT address_pkey PRIMARY KEY (ad_id);
+
+
+--
 -- Name: answer answers_a_id_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -236,6 +376,14 @@ ALTER TABLE ONLY public.answer
 
 ALTER TABLE ONLY public."group"
     ADD CONSTRAINT groups_pkey PRIMARY KEY (g_id);
+
+
+--
+-- Name: manymany manymany_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.manymany
+    ADD CONSTRAINT manymany_pkey PRIMARY KEY (mm_id);
 
 
 --
@@ -271,13 +419,19 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: -
+-- Name: manymany manymany_address_ad_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
+ALTER TABLE ONLY public.manymany
+    ADD CONSTRAINT manymany_address_ad_id_fk FOREIGN KEY (mm_addr) REFERENCES public.address(ad_id);
+
+
+--
+-- Name: manymany manymany_users_u_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.manymany
+    ADD CONSTRAINT manymany_users_u_id_fk FOREIGN KEY (mm_user) REFERENCES public.users(u_id);
 
 
 --
