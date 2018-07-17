@@ -1,7 +1,6 @@
 package core;
 
 import cookies.EncodeDecode;
-import logic.Ent;
 import logic.Persistence;
 import model.dao.DAOPgUser;
 import model.dto.User;
@@ -40,7 +39,7 @@ public class Authenticator {
     }
 
     public Result auth(String login, String pwd) {
-        DAOPgUser dao = persistence.get(Ent.User).dao();
+        DAOPgUser dao = persistence.get(User.class).dao();
         List<User> byLogin = dao.getByLogin(login, true);
         boolean success = false;
         String message = "";
@@ -48,7 +47,7 @@ public class Authenticator {
 
         if (byLogin.isEmpty()) {
             message = new MessageFormatted("Entered email (%s) not found in database", login).get();
-        } else if (byLogin.size()>1) {
+        } else if (byLogin.size() > 1) {
             message = new MessageFormatted("Looks like you entered only part of your email (%s) because too many matching records found in database", login).get();
         } else {
             user = byLogin.get(0);
@@ -69,7 +68,7 @@ public class Authenticator {
         if (!pwd1.equals(pwd2)) {
             message = "Password mismatch";
         } else {
-            DAOPgUser dao = persistence.get(Ent.User).dao();
+            DAOPgUser dao = persistence.get(User.class).dao();
             int amount = dao.getByLogin(login, true).size();
             if (amount == 0) {
                 user = dao.store(new User(name, login, new EncodeDecode().encrypt(pwd1), group));

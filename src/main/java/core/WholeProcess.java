@@ -1,6 +1,5 @@
 package core;
 
-import logic.Ent;
 import logic.Persistence;
 import model.dao.DAOPgGroup;
 import model.dao.DAOStatistics;
@@ -31,15 +30,15 @@ public class WholeProcess {
     }
 
     public User user(int id) {
-        return (User) persistence.get(Ent.User).dao().get(id);
+        return (User) persistence.get(User.class).dao().get(id);
     }
 
     public Group group(int id) {
-        return (Group) persistence.get(Ent.Group).dao().get(id);
+        return (Group) persistence.get(Group.class).dao().get(id);
     }
 
     public List<Group> groups() {
-        DAOPgGroup dao = persistence.get(Ent.Group).dao();
+        DAOPgGroup dao = persistence.get(Group.class).dao();
         return dao.all();
     }
 
