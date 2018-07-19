@@ -6,6 +6,8 @@ IP=$1
 BASE=$2
 PREFIX=$3
 
+export PGPASSWORD=pg123457
+
 if [ -z "$1" ]
 then
     echo "parameter 1 should be IP address"
