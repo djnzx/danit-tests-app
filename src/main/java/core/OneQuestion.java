@@ -1,6 +1,5 @@
 package core;
 
-import logic.Ent;
 import logic.Persistence;
 import model.dao.DAOPgAnswer;
 import model.dto.Answer;
@@ -18,11 +17,11 @@ public class OneQuestion {
     }
 
     public Question question() {
-        return (Question) persistence.get(Ent.Question).dao().get(this.id);
+        return (Question) persistence.get(Question.class).dao().get(this.id);
     }
 
     public List<Answer> answers() {
-        DAOPgAnswer dao = persistence.get(Ent.Answer).dao();
+        DAOPgAnswer dao = persistence.get(Answer.class).dao();
         return dao.getAllByQuestion(id);
     }
 

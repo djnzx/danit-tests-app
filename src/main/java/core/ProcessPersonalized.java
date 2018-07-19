@@ -2,11 +2,11 @@ package core;
 
 import core.stat.Statistics;
 import core.stat.StatisticsPersonalized;
-import logic.Ent;
 import logic.Persistence;
 import model.dao.DAOPgProcess;
 import model.dao.DAOPgQuestion;
 import model.dto.Group;
+import model.dto.Question;
 import model.dto.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +25,12 @@ public class ProcessPersonalized implements Process {
     public ProcessPersonalized(Persistence persistence, int id) {
         this.persistence=persistence;
         this.userId = id;
-        DAOPgQuestion dao = this.persistence.get(Ent.Question).dao();
+        DAOPgQuestion dao = this.persistence.get(Question.class).dao();
         List<Integer> available = dao.availableByUser(id);
         log.info(available.toString());
         this.it = available.iterator();
-        this.user = (User) persistence.get(Ent.User).dao().get(id);
-        this.group = (Group) persistence.get(Ent.Group).dao().get(user.getGroupId());
+        this.user = (User) persistence.get(User.class).dao().get(id);
+        this.group = (Group) persistence.get(Group.class).dao().get(user.getGroupId());
     }
 
     @Override
@@ -40,13 +40,13 @@ public class ProcessPersonalized implements Process {
 
     @Override
     public void skip(int qid) {
-        DAOPgProcess dao = persistence.get(Ent.Process).dao();
+        DAOPgProcess dao = persistence.get(Process.class).dao();
         dao.insert(new model.dto.Process(this.userId, qid, 0));
     }
 
     @Override
     public void store(int question, int answer) {
-        DAOPgProcess dao = persistence.get(Ent.Process).dao();
+        DAOPgProcess dao = persistence.get(Process.class).dao();
         dao.insert(new model.dto.Process(this.userId, question, answer));
     }
 
