@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import params.Params;
 import utils.FreeMarker;
+import utils.RequestPrinter;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +44,7 @@ public class ServletRegister extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println(new RequestPrinter(req).getAll());
         Params p = new Params(req);
         log.info(p.toString());
         Authenticator.Result r = wholeProcess.register(p.get(f_lg), p.get(f_p1), p.get(f_p2), p.get(f_nm), p.get(f_gr));
