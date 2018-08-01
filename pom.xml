@@ -4,13 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>org.danit</groupId>
     <artifactId>dan-tests</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <mainClass>org.danit.Application</mainClass>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -70,6 +78,12 @@
     </properties>
 
     <dependencies>
+<!--    https://github.com/alexr007/colored.git -->
+        <dependency>
+            <groupId>org.alexr</groupId>
+            <artifactId>coloured-console</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
