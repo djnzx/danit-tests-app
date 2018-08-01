@@ -46,7 +46,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Application</mainClass>
+                            <mainClass>org.danit.Application</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -74,14 +74,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jetty.version>9.4.6.v20170531</jetty.version>
+        <jetty.version>9.4.11.v20180605</jetty.version>
     </properties>
 
     <dependencies>
-<!--    https://github.com/alexr007/colored.git -->
         <dependency>
             <groupId>org.alexr</groupId>
-            <artifactId>coloured-console</artifactId>
+            <artifactId>http-trace</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

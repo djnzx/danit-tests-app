@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class WholeProcess {
-    private final HashMap<Integer, Process> storage = new HashMap<>();
+    private final HashMap<Integer, LearningProcess> storage = new HashMap<>();
     private final Persistence persistence;
     private final Authenticator authenticator;
 
@@ -18,7 +18,7 @@ public class WholeProcess {
         this.authenticator = new Authenticator(persistence);
     }
 
-    public Process getByStudent(int id) {
+    public LearningProcess getByStudent(int id) {
         if (!storage.containsKey(id)) {
             storage.put(id, new ProcessPersonalized(persistence, id));
         }

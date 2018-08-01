@@ -4,7 +4,7 @@ import org.danit.core.stat.Statistics;
 import org.danit.model.dto.Group;
 import org.danit.model.dto.User;
 
-public interface Process {
+public interface LearningProcess {
     Statistics statistics();
 
     default void skip(String s) {

@@ -1,10 +1,9 @@
 package org.danit.logic;
 
-import org.danit.model.PgDatabase;
 import org.danit.model.dao.DAO;
-import org.danit.model.dao.DAOPgUser;
 import org.danit.model.dto.AbstractEntity;
-import org.danit.model.dto.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.function.BiConsumer;
@@ -13,6 +12,7 @@ import java.util.function.Supplier;
 public class InMemory<T extends AbstractEntity> {
     private final DAO<T> dao;
     private final HashMap<Integer, T> storage = new HashMap<>();
+    static Logger log = LoggerFactory.getLogger(InMemory.class);
 
     public InMemory(Supplier<DAO<T>> s) {
         this.dao = s.get();
@@ -36,16 +36,5 @@ public class InMemory<T extends AbstractEntity> {
     @SuppressWarnings("unchecked")
     public <D extends DAO<? extends AbstractEntity>> D dao() {
         return (D)dao;
-    }
-
-    public static void main(String[] args) {
-/*
-        InMemory ue = new InMemory<>(()-> new DAOPgUser(new PgDatabase()));
-        User u1 = (User)ue.get(1);
-        System.out.println(u1);
-        System.out.println(ue.get(2));
-        System.out.println(ue.get(3));
-        ue.forEach((k, e) -> System.out.println(e));
-*/
     }
 }

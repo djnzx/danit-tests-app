@@ -1,7 +1,7 @@
 package org.danit.servlets;
 
 import org.danit.cookies.Session;
-import org.danit.core.Process;
+import org.danit.core.LearningProcess;
 import org.danit.core.WholeProcess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +40,7 @@ public class ServletTest extends HttpServlet {
         final Params p = new Params(req);
         log.info(p.toString());
 
-        final Process personal = process.getByStudent(new Session(req).whoLogged());
+        final LearningProcess personal = process.getByStudent(new Session(req).whoLogged());
         final HashMap<String, Object> data = new HashMap<>();
         data.put("user", personal.user());
         data.put("group", personal.group());
@@ -55,10 +55,9 @@ public class ServletTest extends HttpServlet {
             if (SKIP.equals(aw)) {
                 personal.skip(qu);
             } else {
-                personal.store(qu, f_aw);
+                personal.store(qu, aw);
             }
         }
-
         if (personal.hasNext()) {
             data.put("qanda", personal.next());
         }

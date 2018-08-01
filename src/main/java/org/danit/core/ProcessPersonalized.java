@@ -1,5 +1,7 @@
 package org.danit.core;
 
+import org.alexr.colored.Attribute;
+import org.alexr.colored.Colored;
 import org.danit.core.stat.Statistics;
 import org.danit.core.stat.StatisticsPersonalized;
 import org.danit.logic.Persistence;
@@ -8,12 +10,13 @@ import org.danit.model.dao.DAOPgQuestion;
 import org.danit.model.dto.Group;
 import org.danit.model.dto.Question;
 import org.danit.model.dto.User;
+import org.danit.model.dto.Process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Iterator;
 import java.util.List;
 
-public class ProcessPersonalized implements Process {
+public class ProcessPersonalized implements LearningProcess {
     private final Persistence persistence;
     private final int userId;
     private final Iterator<Integer> it;
@@ -40,8 +43,11 @@ public class ProcessPersonalized implements Process {
 
     @Override
     public void skip(int qid) {
+        log.info(Colored.build("id1:"+qid, Attribute.MAGENTA));
         DAOPgProcess dao = persistence.get(Process.class).dao();
+        log.info(Colored.build("id2:"+qid, Attribute.MAGENTA));
         dao.insert(new org.danit.model.dto.Process(this.userId, qid, 0));
+        log.info(Colored.build("id3:"+qid, Attribute.MAGENTA));
     }
 
     @Override

@@ -4,6 +4,8 @@ import org.danit.model.PgDatabase;
 import org.danit.model.dao.*;
 import org.danit.model.dto.*;
 import org.danit.model.dto.Process;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 
@@ -11,6 +13,7 @@ public class Persistence {
     private final PgDatabase base = new PgDatabase();
     private final HashMap<Class<?>, InMemory<?>> storage = new HashMap<>();
     private final DAOStatistics statistics = new DAOStatistics(base);
+    static Logger log = LoggerFactory.getLogger(Persistence.class);
 
     public Persistence() {
         storage.put(User.class, new InMemory<User>(() -> new DAOPgUser(base)));

@@ -51,6 +51,6 @@ public class Process extends AbstractEntity {
 
     @Override
     public String toString() {
-        return isEmpty() ? "Process:[EMPTY]" : String.format("Process:[id:%d, user:%d, qu:%d, aw:%d, date:%s]",id,user,question,answer,date.toString());
+        return isEmpty() ? "LearningProcess:[EMPTY]" : String.format("LearningProcess:[id:%d, user:%d, qu:%d, aw:%d, date:%s]",id,user,question,answer,date.toString());
     }
 }
