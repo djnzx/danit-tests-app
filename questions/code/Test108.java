@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test108 {
     public static void main(String[] args) {
         String s = "foo";

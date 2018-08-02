@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test116 {
     final static short x = 2;
     public static int y = 0;

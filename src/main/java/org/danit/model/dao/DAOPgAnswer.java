@@ -90,4 +90,15 @@ public class DAOPgAnswer implements DAO<Answer>{
         }
         return new ArrayList<>();
     }
+
+    public void markRightAnswer(int aw_pk) {
+        try {
+            new JdbcSession(source)
+                    .sql("UPDATE answer SET a_type=1 WHERE a_id = ?")
+                    .set(aw_pk)
+                    .execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

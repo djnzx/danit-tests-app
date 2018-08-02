@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test110 {
     static int j;
     static void methodA(int i){

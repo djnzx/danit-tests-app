@@ -43,7 +43,7 @@ public class Application {
                 addFilter(FilterServletPostRegister.class, "/register", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
                 addFilter(FilterServletPostLogin.class, "/login", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
                 addFilter(FilterServletAnybodyLogged.class, "/test", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
-                addFilter(FilterServletPrinter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
+                //addFilter(FilterServletPrinter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
                 //addFilter(new FilterHolder(new DelegatingFilterProxy(DEFAULT_FILTER_NAME)), "/*", EnumSet.allOf(DispatcherType.class));
                 // https://stackoverflow.com/questions/30927761/embedded-jetty-doesnt-recognise-spring-mvc-security
                 // https://stackoverflow.com/questions/19718159/java-lang-illegalstateexception-no-sessionmanager/19718918#19718918

@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test037 {
     static boolean b;
     public static void main(String [] args) {

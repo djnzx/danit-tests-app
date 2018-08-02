@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test049 {
     public static void main(String[] args) {
         double value = -9.0;

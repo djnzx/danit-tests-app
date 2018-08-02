@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test122 {
     static final StringBuffer sb1 = new StringBuffer();
     static final StringBuffer sb2 = new StringBuffer();

@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test165 implements Runnable {
     private int x;
     private int y;

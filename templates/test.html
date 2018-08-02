@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <#if qanda??>
-        <p>Hello, ${user.name} (${group.name})</p>
+        <p>Hello, ${user.name} (${group.name}), question id: <b>${qanda.question().number}</b>, remained: <b>${remained}</b> </p>
         <p>${qanda.question().header}</p>
         <p>${qanda.question().textHtml()}</p>
         <form action="test" method="post">
@@ -39,7 +39,7 @@
         <div class="form-signin">
             <p>${user.name},<br>
                 you finished the test,<br>
-                we will inform you once your answer will be processed</p>
+                we will inform you once your answers will be processed</p>
             <a class="btn btn-lg btn-primary btn-block" href="/logout">logout</a>
         </div>
     </#if>

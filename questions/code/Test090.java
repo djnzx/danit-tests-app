@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test090 {
     public static void print() {
         System.out.print("Hello World ");

@@ -1,6 +1,4 @@
-package dan.javatests.code;
-
-    class A {
+class A {
     final int get(int a, int b) { return 0; }
 }
 class B extends A {

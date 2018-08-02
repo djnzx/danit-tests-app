@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class ServletLogin extends HttpServlet {
     private final FreeMarker template;

@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test209 {
     static int x;
 

@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test020 {
     public void one() {
         assert false; // 1

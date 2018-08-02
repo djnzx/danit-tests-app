@@ -44,6 +44,7 @@ public class ServletTest extends HttpServlet {
         final HashMap<String, Object> data = new HashMap<>();
         data.put("user", personal.user());
         data.put("group", personal.group());
+        data.put("remained", personal.remained());
 
         if (p.containsAll(f_aw, f_qu)) {
             final String qu=p.get(f_qu);

@@ -81,7 +81,7 @@ public class DAOPgQuestion implements DAO<Question> {
         return new ArrayList<>();
     }
 
-    public List<Integer> availableByUser(int id) {
+    public List<Integer> availableToUser(int id) {
         final String sql = "  SELECT q_id FROM question WHERE q_id NOT IN " +
                         "  ( " +
                         "    SELECT p_question " +

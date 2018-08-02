@@ -1,6 +1,4 @@
-package dan.javatests.code;
-
-public class Test025 {
+public class Test0025 {
     public static void stringReplace (String text) {
         text = text.replace ('j' , 'c'); /* Line 5 */
     }

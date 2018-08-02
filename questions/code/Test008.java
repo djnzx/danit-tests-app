@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test008 {
     public static void main(String [] args) {
         Test008 s = new Test008();

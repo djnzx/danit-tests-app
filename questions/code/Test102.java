@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test102 extends Thread {
     final StringBuffer sb1 = new StringBuffer();
     final StringBuffer sb2 = new StringBuffer();

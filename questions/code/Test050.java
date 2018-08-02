@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test050 {
     public static void main(String[] args) {
         String a = "newspaper";

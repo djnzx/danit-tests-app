@@ -21,4 +21,6 @@ public interface LearningProcess {
     boolean hasNext();
     User user();
     Group group();
+
+    int remained();
 }

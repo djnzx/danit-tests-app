@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test003 {
     public static void main(String[] args) {
         int i=2;

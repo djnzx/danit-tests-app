@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test009 {
     boolean [] b = new boolean[3];
     int c = 0;

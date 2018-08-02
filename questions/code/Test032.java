@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test032 {
     public static void main(String[] args) {
         float f1[ ], f2[ ];

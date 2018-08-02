@@ -1,6 +1,4 @@
-package dan.javatests.code;
-
-public class Test001 {
+public class Test0001 {
     public static void main(String[] args) {
         int i=3;
         if (i<5) {

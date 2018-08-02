@@ -1,6 +1,4 @@
-package dan.javatests.code;
-
-public class Test022 {
+public class Test021 {
     public static int y;
 
     public static void two(int x) {

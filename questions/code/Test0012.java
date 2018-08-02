@@ -1,6 +1,4 @@
-package dan.javatests.code;
-
-public class Test011 {
+public class Test0012 {
     public static void main(String[] args) {
         Float f = new Float("12");
         switch ((int)(f/1)) {

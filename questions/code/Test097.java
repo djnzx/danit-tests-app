@@ -1,5 +1,3 @@
-package dan.javatests.code;
-
 public class Test097 {
     public static void main(String [] args) {
         int i = 1;
@@ -7,4 +5,5 @@ public class Test097 {
             System.out.print("I is " + i);
         while ( i > 1 ) ;
     }
+    
 }
