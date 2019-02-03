@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 gzip -d $FILE
 /Library/PostgreSQL/10/bin/dropdb --username=postgres danit
