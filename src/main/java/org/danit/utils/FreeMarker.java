@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +25,17 @@ public final class FreeMarker {
      * Configuration Instance
      */
     private final Configuration config;
+
+    public static FreeMarker folder(final String path_from_project_root) throws IOException {
+        return new FreeMarker(path_from_project_root);
+    }
+
+    public static FreeMarker resources(final String path_from_project_resources) throws IOException, URISyntaxException {
+        String path = Paths
+            .get(FreeMarker.class.getResource(path_from_project_resources).toURI())
+            .toFile().getAbsolutePath();
+        return new FreeMarker(path);
+    }
 
     public FreeMarker(final String path) throws IOException {
         this.config = new Configuration(Configuration.VERSION_2_3_28) {{
